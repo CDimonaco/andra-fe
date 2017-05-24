@@ -31,7 +31,7 @@ export default class Nav extends React.Component{
                             </div>
                             <ul className="nav navbar-nav">
                                 <li className="active"><a href="#">Home</a></li>
-                                <li onClick={this.handleLogout}><a href="#">Home</a></li>
+                                <li onClick={this.handleLogout}><a href="#">Logout</a></li>
 
                                 {Auth.getRole() === "1" ?
                                     <li className="dropdown">

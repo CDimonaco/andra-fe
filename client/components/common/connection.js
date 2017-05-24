@@ -22,4 +22,22 @@ var authenticationBackend = function(username,password,success,error){
     });
 };
 
-export default {login:authenticationBackend}
+var getUsers = function(token,offset,success, error){
+    $.ajax({
+        url: devBase + "/user?offset=" + offset,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'GET',
+        headers:{
+            "Authorization" : "Bearer "+token
+        },
+        timeout: 30000,
+        success: function(data) {
+            success(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+            error(xhr, status, err);
+        }.bind(this)
+    });
+};
+export default {login:authenticationBackend,getUsers:getUsers}

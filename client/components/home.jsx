@@ -4,7 +4,7 @@
 import React from "react"
 import Auth from "./common/auth.js"
 import login from "./common/connection.js"
-
+import Errors from "./common/errors.js"
 export default class Home extends React.Component{
 
     constructor(props){
@@ -13,17 +13,21 @@ export default class Home extends React.Component{
         this.handlePassword = this.handlePassword.bind(this);
         this.tryLogin = this.tryLogin.bind(this);
         this.handleSuccess = this.handleSuccess.bind(this);
-        this.state = {username:"",password:"",result:false};
+        this.handleError = this.handleError.bind(this);
+        this.state = {username:"",password:"",result:false,errors:[]};
     }
 
     tryLogin(e){
          e.preventDefault();
-         login.login(this.state.username, this.state.password,this.handleSuccess,function (xhr, status, err) {
-             console.error(err)
-         })
+         login.login(this.state.username, this.state.password,this.handleSuccess,this.handleError)
     }
-    handleLogin(){
-        console.log(this.state.result);
+    handleError(xhr,status,err){
+        let raised = [xhr.responseJSON["message"]];
+        this.setState({errors:raised});
+        setTimeout(function () {
+                this.setState({errors:[]})
+            }.bind(this)
+            ,3000)
     }
     handlePassword(e){
         console.log("lol");
@@ -41,6 +45,8 @@ export default class Home extends React.Component{
     render(){
         return(
                 <div className="row">
+                    <div className="col-lg-12 offset-6">
+                        <Errors errors={this.state.errors}/>
                     <form className="form-horizontal">
                         <div className="form-group">
                             <label className="control-label col-sm-2">Email:</label>
@@ -60,6 +66,7 @@ export default class Home extends React.Component{
                             </div>
                         </div>
                     </form>
+                    </div>
                 </div>
         );
     }
