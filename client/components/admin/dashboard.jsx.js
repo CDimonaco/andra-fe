@@ -45,7 +45,7 @@ export default class DashBoard extends React.Component{
         this.state = {users:[],errors:[],offset:0,hasmore:false,username:Auth.getUsername()};
         this.otherUsers = this.otherUsers.bind(this);
     }
-    componentDidMount(){
+    componentWillMount(){
         if(!Auth.isUserAuthenticated() && Auth.getRole() !== "1"){
             this.props.history.push("/")
         }
@@ -118,6 +118,11 @@ export default class DashBoard extends React.Component{
                         </tbody>
                     </table>
                 </div>
+                {this.state.hasmore?
+                    <div className="col-lg-12">
+                        <button onClick={this.otherUsers} className="btn btn-success">Carica altri utenti</button>
+                    </div>
+                :false}
             </div>
         );
     }

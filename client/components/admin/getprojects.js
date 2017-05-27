@@ -19,7 +19,7 @@ export default class GetProjects extends React.Component{
         this.state = {projects:[],userid:"",errors:[]};
     }
 
-    componentDidMount(){
+    componentWillMount(){
         if(!Auth.isUserAuthenticated() && Auth.getRole() !== "1"){
             this.props.history.push("/")
         }

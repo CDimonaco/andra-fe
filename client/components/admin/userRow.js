@@ -12,7 +12,7 @@ export default class UserRow extends React.Component{
         this.state = {users:{},listindex:""}
     }
 
-    componentDidMount(){
+    componentWillMount(){
         if(this.props.users){
             this.setState({users:this.props.users})
         }
