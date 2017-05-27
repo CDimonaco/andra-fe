@@ -27,9 +27,15 @@ export default class Nav extends React.Component{
                     <nav className="navbar navbar-inverse navbar-fixed-top">
                         <div className="container-fluid">
                             <div className="navbar-header">
+                                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#andrabar">
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                </button>
                                 <a className="navbar-brand" href="#">A.N.D.R.A</a>
                             </div>
-                            <ul className="nav navbar-nav">
+                            <div className="collapse navbar-collapse" id="andrabar">
+                                <ul className="nav navbar-nav">
                                 <li className="active"><a href="#">Home</a></li>
                                 <li onClick={this.handleLogout}><a href="#">Logout</a></li>
 
@@ -43,8 +49,8 @@ export default class Nav extends React.Component{
                                         </ul>
                                     </li>
                                     :false}
-
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
                     </nav>
                 :false}

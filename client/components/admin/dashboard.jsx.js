@@ -99,7 +99,7 @@ export default class DashBoard extends React.Component{
                 </div>
                 <div>
                     <Errors errors={this.state.errors}/>
-                    <table className="table table-bordered">
+                    <table className="table table-bordered table-responsive">
                         <thead>
                         <tr>
                             <th>#</th>
