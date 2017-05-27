@@ -3,7 +3,7 @@
  */
 import React from "react"
 import Auth from "../common/auth.js"
-import UserRow from "./userRow.js"
+import UserRow from "../common/rows/userRow.js"
 import GetUsers from "../common/connection.js"
 import DeleteUsers from "../common/connection.js"
 import Errors from "../common/errors.js";
