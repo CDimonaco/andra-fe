@@ -2,6 +2,8 @@
  * Created by cdimonaco on 24/05/2017.
  */
 import React from "react"
+import {Link} from "react-router-dom"
+
 
 export default class UserRow extends React.Component{
     constructor(props){
@@ -43,6 +45,7 @@ export default class UserRow extends React.Component{
                 <td>{this.state.users.email}</td>
                 <td>
                     <button className="btn btn-danger" onClick={this.deleteUser}>Elimina utente</button>
+                    <Link to={"/admin/project/"+this.state.users.id}><button style={{marginLeft:6}} className="btn btn-success">Progetti</button></Link>
                 </td>
             </tr>
         );

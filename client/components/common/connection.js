@@ -60,7 +60,42 @@ let getUsers = function(token,offset,success, error){
         }.bind(this)
     });
 };
-
+let getProjects = function(token,success, error){
+    $.ajax({
+        url: devBase + "/projects",
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'GET',
+        headers:{
+            "Authorization" : "Bearer "+token
+        },
+        timeout: 30000,
+        success: function(data) {
+            success(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+            error(xhr, status, err);
+        }.bind(this)
+    });
+};
+let getProjectAdmin = function(token,userid,success, error){
+    $.ajax({
+        url: devBase + "/projects/" + userid,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'GET',
+        headers:{
+            "Authorization" : "Bearer "+token
+        },
+        timeout: 30000,
+        success: function(data) {
+            success(data);
+        }.bind(this),
+        error: function(Jqxhr, statuscode, errors) {
+            error(Jqxhr, statuscode, errors);
+        }.bind(this)
+    });
+};
 let deleteUsers = function(token,userid,success, error){
     $.ajax({
         url: devBase + "/user/" + userid,
@@ -79,4 +114,4 @@ let deleteUsers = function(token,userid,success, error){
         }.bind(this)
     });
 };
-export default {login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers,newUser:newUser}
+export default {login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers,newUser:newUser,getProjects:getProjects,getProjectAdmin:getProjectAdmin}

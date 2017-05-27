@@ -113,7 +113,7 @@ export default class DashBoard extends React.Component{
                         </thead>
                         <tbody>
                         {this.state.users.map(function (item,index) {
-                            return <UserRow currentUsername={self.state.username} handleDelete={self.handleDelete} users={item} key={index} listindex={index+1}/>
+                            return <UserRow handleDelete={self.handleDelete} users={item} key={index} listindex={index+1}/>
                         })}
                         </tbody>
                     </table>
