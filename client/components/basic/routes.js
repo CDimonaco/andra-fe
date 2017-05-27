@@ -3,22 +3,16 @@
  */
 import React from "react"
 import {Switch,Route,Redirect} from "react-router-dom"
-import Auth from "../common/auth.js"
-import Login from "../home.jsx"
+import ProjectList from "./projects/list.js"
+import AddProject from "./projects/new.js"
 
 export default class BasicRoutes extends React.Component{
     render() {
         return(
             <Switch>
-                <Route exact path="/" render={props => (
-                    !Auth.isUserAuthenticated() ? (
-                        <Login {...props}/>
-                    ) : (
-                        <Redirect to={{
-                            pathname: '/admin'
-                        }}/>
-                    )
-                )} />
+                <Route exact path="/" component={ProjectList}/>
+                <Route path="/projects/:id/sensors" component={AddProject}/>
+                <Route path="/projects/new" component={AddProject}/>
             </Switch>
         );
     }

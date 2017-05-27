@@ -8,22 +8,22 @@ import Errors from "../../common/errors.js"
 import getProjects from "../../common/connection.js"
 import deleteProjects from "../../common/connection.js"
 
-export default class ProjectList extends React.Component{
+export default class SensorsList extends React.Component{
     constructor(props){
         super(props);
 
-        this.getProjects = this.getProjects.bind(this);
+        this.getSensors = this.getSensors.bind(this);
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
-        this.handleProjectDelete = this.handleProjectDelete.bind(this);
-        this.state = {projects:[],errors:[]};
+        this.handleSensorDelete = this.handleSensorDelete.bind(this);
+        this.state = {sensors:[],errors:[]};
     }
 
     componentWillMount(){
         this.getProjects();
     }
 
-    getProjects(){
+    getSensors(){
         getProjects.getProjects(Auth.getToken(),this.handleSuccess,this.handleErrors);
     }
 
@@ -47,7 +47,7 @@ export default class ProjectList extends React.Component{
             ,3000);
     }
 
-    handleProjectDelete(id){
+    handleSensorDelete(id){
         console.log("Delete project",id);
         deleteProjects.deleteProject(Auth.getToken(),id,this.handleSuccess.bind(null,true),this.handleErrors);
     }
@@ -84,3 +84,4 @@ export default class ProjectList extends React.Component{
         );
     }
 }
+

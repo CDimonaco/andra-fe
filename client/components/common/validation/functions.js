@@ -18,3 +18,18 @@ export let validateNewUser = function (username,password,email,ruolo) {
     }
     return response;
 };
+
+export let validateNewProject = function (nome,descrizione) {
+    let response = [];
+    let validation = Validate.validate({nome:nome,descrizione:descrizione},validationConstraints["newProject"]);
+    if (validation !== undefined){
+        for(let key in validation){
+            //Ogni chiave del dizionario, quindi un errore di validazione
+            let value = validation[key];
+            value.map(function (item) {
+                response.push(item);
+            });
+        }
+    }
+    return response;
+};

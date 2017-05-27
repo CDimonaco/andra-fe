@@ -41,7 +41,25 @@ let newUser = function (token,body,success,error) {
         }.bind(this)
     });
 };
-
+let newProject = function (token,body,success,error) {
+    $.ajax({
+        url: devBase + "/projects",
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'POST',
+        headers:{
+            "Authorization" : "Bearer "+token
+        },
+        timeout: 30000,
+        data: JSON.stringify(body),
+        success: function(data) {
+            success(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+            error(xhr, status, err);
+        }.bind(this)
+    });
+};
 let getUsers = function(token,offset,success, error){
     $.ajax({
         url: devBase + "/user?offset=" + offset,
@@ -151,4 +169,22 @@ let deleteUsers = function(token,userid,success, error){
         }.bind(this)
     });
 };
-export default {login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers,newUser:newUser,getProjects:getProjects,getProjectAdmin:getProjectAdmin,getSensors:getSensors,getValues:getValues}
+let deleteProject = function(token,projectid,success, error){
+    $.ajax({
+        url: devBase + "/projects/" + projectid,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'DELETE',
+        headers:{
+            "Authorization" : "Bearer "+token
+        },
+        timeout: 30000,
+        success: function(data) {
+            success(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+            error(xhr, status, err);
+        }.bind(this)
+    });
+};
+export default {deleteProject:deleteProject,login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers,newUser:newUser,getProjects:getProjects,getProjectAdmin:getProjectAdmin,getSensors:getSensors,getValues:getValues,newProject:newProject}

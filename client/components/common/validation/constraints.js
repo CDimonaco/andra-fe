@@ -34,6 +34,18 @@ const validationConstraints = {
             }
         },
     },
+    newProject:{
+        nome:{
+            presence:{
+                message:"mancante"
+            }
+        },
+        descrizione:{
+            presence:{
+                message:"mancante"
+            }
+        }
+    }
 };
 
 export default validationConstraints;

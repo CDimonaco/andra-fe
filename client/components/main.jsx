@@ -12,13 +12,6 @@ export default class Main extends React.Component{
     render() {
         return(
             <Switch>
-                <Route exact path="/" render={props => (
-                    !Auth.isUserAuthenticated() ? (
-                        <Login {...props}/>
-                    ) : (
-                        <BasicRoutes {...props}/>
-                    )
-                )} />
                 <Route path="/admin"  render={props => (
                     Auth.getRole() === "1" && Auth.isUserAuthenticated() ? (
                         <AdminRoutes {...props}/>
@@ -26,6 +19,13 @@ export default class Main extends React.Component{
                         <Redirect to={{
                             pathname: '/'
                         }}/>
+                    )
+                )} />
+                <Route path="/" render={props => (
+                    !Auth.isUserAuthenticated() ? (
+                        <Login {...props}/>
+                    ) : (
+                        <BasicRoutes {...props}/>
                     )
                 )} />
             </Switch>
