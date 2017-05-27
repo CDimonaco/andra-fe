@@ -19,9 +19,13 @@ export default class UserRow extends React.Component{
             this.setState({listindex:this.props.listindex})
         }
     }
-    deleteUser(id){
+    deleteUser(){
         console.log("Delete user inside component");
-        this.props.handleDelete(id);
+        if(this.props.currentUsername === this.state.users.username){
+            alert("Non puoi cancellare il tuo utente!"); //TODO:ALSO IN BACKEND
+            return;
+        }
+        this.props.handleDelete(this.state.users.id);
     }
 
     render(){
@@ -38,7 +42,7 @@ export default class UserRow extends React.Component{
                 <td>{this.state.users.role}</td>
                 <td>{this.state.users.email}</td>
                 <td>
-                    <button className="btn btn-danger" onClick={this.deleteUser.bind(this.state.users.id)}>Elimina Utente</button>
+                    <button className="btn btn-danger" onClick={this.deleteUser}>Elimina utente</button>
                 </td>
             </tr>
         );

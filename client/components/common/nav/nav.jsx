@@ -38,8 +38,8 @@ export default class Nav extends React.Component{
                                         <a className="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span className="caret"></span></a>
                                         <ul className="dropdown-menu">
                                             <li><Link to="/admin">Dashboard</Link></li>
+                                            <li><Link to="/admin/create">Create User</Link></li>
                                             <li>Projects</li>
-                                            <li>Sensors</li>
                                         </ul>
                                     </li>
                                     :false}

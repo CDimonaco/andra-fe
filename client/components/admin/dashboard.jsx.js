@@ -5,6 +5,8 @@ import React from "react"
 import Auth from "../common/auth.js"
 import UserRow from "./userRow.js"
 import GetUsers from "../common/connection.js"
+import DeleteUsers from "../common/connection.js"
+import Errors from "../common/errors.js";
 
 const mockUsers = [
     {
@@ -40,7 +42,7 @@ export default class DashBoard extends React.Component{
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
         this.lastoffset = 0;
-        this.state = {users:mockUsers,errors:[],offset:0,hasmore:false}
+        this.state = {users:[],errors:[],offset:0,hasmore:false,username:Auth.getUsername()};
         this.otherUsers = this.otherUsers.bind(this);
     }
     componentDidMount(){
@@ -55,7 +57,8 @@ export default class DashBoard extends React.Component{
         this.lastoffset = this.state.offset;
     }
     handleSuccess(data){
-        console.log(data)
+        console.log(data);
+        this.setState({users:data.users});
         if(data.hasMore){
             this.setState({hasmore:true,offset:this.lastoffset+100})
         }
@@ -68,9 +71,19 @@ export default class DashBoard extends React.Component{
             Auth.deauthenticateUser();
             this.props.history.push("/");
         }
-        console.log(xhr.responseJSON["msg"]);
+        if(xhr.status === 404 && xhr.responseJSON["message"]){
+            let raised = [xhr.responseJSON["message"]];
+            this.setState({errors:raised});
+            setTimeout(function () {
+                    this.setState({errors:[]})
+                }.bind(this)
+                ,3000);
+            console.log("User not found");
+        }
+        console.log(xhr);
     }
-    handleDelete(){
+    handleDelete(userid){
+        DeleteUsers.deleteUsers(Auth.getToken(),userid,this.handleSuccess,this.handleErrors);
         console.log("Delete outside the row");
     }
     render(){
@@ -79,10 +92,11 @@ export default class DashBoard extends React.Component{
             <div className="row">
                 <div className="col-lg-12">
                     <h2 className="page-header">
-                        Dashboard
+                        {this.state.username} - Dashboard
                     </h2>
                 </div>
                 <div>
+                    <Errors errors={this.state.errors}/>
                     <table className="table table-bordered">
                         <thead>
                         <tr>
@@ -96,7 +110,7 @@ export default class DashBoard extends React.Component{
                         </thead>
                         <tbody>
                         {this.state.users.map(function (item,index) {
-                            return <UserRow handleDelete={self.handleDelete} users={item} key={index} listindex={index+1}/>
+                            return <UserRow currentUsername={self.state.username} handleDelete={self.handleDelete} users={item} key={index} listindex={index+1}/>
                         })}
                         </tbody>
                     </table>

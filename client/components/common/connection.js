@@ -5,7 +5,7 @@
 const devBase = "http://localhost:5000";
 
 
-var authenticationBackend = function(username,password,success,error){
+let authenticationBackend = function(username,password,success,error){
     $.ajax({
         url: devBase + "/auth/login",
         dataType: 'json',
@@ -22,7 +22,7 @@ var authenticationBackend = function(username,password,success,error){
     });
 };
 
-var getUsers = function(token,offset,success, error){
+let getUsers = function(token,offset,success, error){
     $.ajax({
         url: devBase + "/user?offset=" + offset,
         dataType: 'json',
@@ -40,4 +40,23 @@ var getUsers = function(token,offset,success, error){
         }.bind(this)
     });
 };
-export default {login:authenticationBackend,getUsers:getUsers}
+
+var deleteUsers = function(token,userid,success, error){
+    $.ajax({
+        url: devBase + "/user/" + userid,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'DELETE',
+        headers:{
+            "Authorization" : "Bearer "+token
+        },
+        timeout: 30000,
+        success: function(data) {
+            success(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+            error(xhr, status, err);
+        }.bind(this)
+    });
+};
+export default {login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers}

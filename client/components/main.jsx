@@ -11,7 +11,7 @@ export default class Main extends React.Component{
         return(
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route exact path="/admin" component={AdminRoutes}/>
+                <Route path="/admin" component={AdminRoutes}/>
             </Switch>
         );
     };
