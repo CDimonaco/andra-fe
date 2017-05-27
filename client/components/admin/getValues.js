@@ -3,21 +3,23 @@
  */
 import React from "react"
 import Auth from "../common/auth.js"
-import getSensors from "../common/connection.js"
-import SensorRow from "./sensorsRow.js";
+import getValues from "../common/connection.js"
+import valuesRow from "./valuesRow.js";
 import Errors from "../common/errors.js"
+import ValuesRow from "./valuesRow";
 
-export default class GetSensors extends React.Component {
+export default class GetValues extends React.Component {
     constructor(props) {
         super(props);
 
-        this.getSensors = this.getSensors.bind(this);
+        this.getValues = this.getValues.bind(this);
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
         this.otherSensors = this.otherSensors.bind(this);
         this.projectid = "";
+        this.sensorid = "";
         this.lastoffset = 0;
-        this.state = {sensors: [], projectid: "", errors: [],offset:0,hasmore:false};
+        this.state = {values: [],sensorid:"",projectid: "", errors: [],offset:0,hasmore:false};
     }
 
     componentWillMount() {
@@ -28,20 +30,24 @@ export default class GetSensors extends React.Component {
             this.setState({projectid: this.props.match.params.id});
             this.projectid = this.props.match.params.id;
         }
-        this.getSensors();
+        if (this.props.match.params.sensorid) {
+            this.setState({sensorid: this.props.match.params.sensorid});
+            this.sensorid = this.props.match.params.sensorid;
+        }
+        this.getValues();
     }
 
-    getSensors() {
-        getSensors.getSensors(Auth.getToken(), this.projectid,this.state.offset,this.handleSuccess, this.handleErrors);
+    getValues() {
+        getValues.getValues(Auth.getToken(),this.sensorid,this.state.offset,this.handleSuccess, this.handleErrors);
         this.lastoffset = this.state.offset;
     }
     otherSensors(){
         this.getSensors();
     }
     handleSuccess(data) {
-        console.log("Sensors");
+        console.log("Values");
         console.log(data);
-        this.setState({sensors:data.sensors});
+        this.setState({values:data.values});
         if(data.hasMore){
             this.setState({hasmore:true,offset:this.lastoffset+100})
         }
@@ -63,7 +69,7 @@ export default class GetSensors extends React.Component {
             <div className="row">
                 <div className="col-lg-12">
                     <h2 className="page-header">
-                        {this.state.projectid} - Sensori
+                        {this.state.projectid} - {this.state.sensorid} - Valori rilevati
                     </h2>
                 </div>
                 <div>
@@ -73,21 +79,21 @@ export default class GetSensors extends React.Component {
                         <tr>
                             <th>#</th>
                             <th>ID</th>
-                            <th>Nome</th>
-                            <th>Api key</th>
-                            <th></th>
+                            <th>Valore</th>
+                            <th>Info</th>
+                            <th>Timestamp</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {this.state.sensors.map(function (item, index) {
-                            return <SensorRow project ={this.state.projectid} sensor={item} key={index} listindex={index + 1}/>
-                        }.bind(this))}
+                        {this.state.values.map(function (item, index) {
+                            return <ValuesRow value={item} key={index} listindex={index + 1}/>
+                        })}
                         </tbody>
                     </table>
                 </div>
                 {this.state.hasmore?
                     <div className="col-lg-12">
-                        <button onClick={this.otherSensors} className="btn btn-success">Carica altri sensori</button>
+                        <button onClick={this.otherSensors} className="btn btn-success">Carica altri valori</button>
                     </div>
                     :false}
             </div>

@@ -7,6 +7,7 @@ import Dashboard from "./dashboard.jsx"
 import AddUser from "./adduser.js"
 import GetProjects from "./getprojects.js"
 import GetSensors from "./getsensors.js"
+import GetValues from "./getValues.js"
 
 export default class AdminRoutes extends React.Component{
     render() {
@@ -16,6 +17,7 @@ export default class AdminRoutes extends React.Component{
                 <Route exact path="/admin/create" component={AddUser}/>
                 <Route exact path="/admin/project/:id" component={GetProjects}/>
                 <Route exact path="/admin/project/:id/sensors" component={GetSensors}/>
+                <Route exact path="/admin/project/:id/:sensorid/values" component={GetValues}/>
             </Switch>
         );
     }
