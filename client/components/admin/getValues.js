@@ -42,14 +42,17 @@ export default class GetValues extends React.Component {
         this.lastoffset = this.state.offset;
     }
     otherSensors(){
-        this.getSensors();
+        this.getValues();
     }
     handleSuccess(data) {
         console.log("Values");
         console.log(data);
-        this.setState({values:data.values});
+        let updatedData = data.values.concat(this.state.values);
+        this.setState({values:updatedData});
         if(data.hasMore){
             this.setState({hasmore:true,offset:this.lastoffset+100})
+        }else{
+            this.setState({hasmore:false})
         }
     }
 

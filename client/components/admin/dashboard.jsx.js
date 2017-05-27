@@ -90,7 +90,6 @@ export default class DashBoard extends React.Component{
         console.log("Delete outside the row");
     }
     render(){
-        let self = this;
         return(
             <div className="row">
                 <div className="col-lg-12">
@@ -113,8 +112,8 @@ export default class DashBoard extends React.Component{
                         </thead>
                         <tbody>
                         {this.state.users.map(function (item,index) {
-                            return <UserRow handleDelete={self.handleDelete} users={item} key={index} listindex={index+1}/>
-                        })}
+                            return <UserRow currentUsername={this.state.username} handleDelete={this.handleDelete} users={item} key={index} listindex={index+1}/>
+                        }.bind(this))}
                         </tbody>
                     </table>
                 </div>
