@@ -22,6 +22,26 @@ let authenticationBackend = function(username,password,success,error){
     });
 };
 
+let newUser = function (token,body,success,error) {
+    $.ajax({
+        url: devBase + "/user",
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'POST',
+        headers:{
+            "Authorization" : "Bearer "+token
+        },
+        timeout: 30000,
+        data: JSON.stringify(body),
+        success: function(data) {
+            success(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+            error(xhr, status, err);
+        }.bind(this)
+    });
+};
+
 let getUsers = function(token,offset,success, error){
     $.ajax({
         url: devBase + "/user?offset=" + offset,
@@ -41,7 +61,7 @@ let getUsers = function(token,offset,success, error){
     });
 };
 
-var deleteUsers = function(token,userid,success, error){
+let deleteUsers = function(token,userid,success, error){
     $.ajax({
         url: devBase + "/user/" + userid,
         dataType: 'json',
@@ -59,4 +79,4 @@ var deleteUsers = function(token,userid,success, error){
         }.bind(this)
     });
 };
-export default {login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers}
+export default {login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers,newUser:newUser}

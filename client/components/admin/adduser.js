@@ -5,6 +5,7 @@ import React from "react"
 import Auth from "../common/auth.js"
 import {validateNewUser} from "../common/validation/functions.js";
 import Errors from "../common/errors.js"
+import newUser from "../common/connection.js"
 
 export default class AddUser extends React.Component{
     constructor(props){
@@ -45,18 +46,25 @@ export default class AddUser extends React.Component{
 
 
     handleSuccess(data){
-
+        console.log("Success");
+        this.props.history.push("/admin")
     }
 
     handleError(xhr,status,err){
-
+        let raised = [xhr.responseJSON["message"]];
+        this.setState({errors:raised});
+        setTimeout(function () {
+                this.setState({errors:[]})
+            }.bind(this)
+            ,3000);
     }
 
     createUser(e){
         e.preventDefault();
         console.log(this.state.username,this.state.password,this.state.email,this.state.role);
         if(this.validateForm()){
-            console.log("Ready for request");
+            let requestBody = {username:this.state.username,password:this.state.password,email:this.state.email,role:parseInt(this.state.role)};
+            newUser.newUser(Auth.getToken(),requestBody,this.handleSuccess,this.handleError);
         }
     }
 

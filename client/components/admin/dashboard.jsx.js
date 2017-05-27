@@ -56,7 +56,10 @@ export default class DashBoard extends React.Component{
         GetUsers.getUsers(Auth.getToken(),this.state.offset,this.handleSuccess,this.handleErrors);
         this.lastoffset = this.state.offset;
     }
-    handleSuccess(data){
+    handleSuccess(data,del){
+        if(del){
+            location.reload();
+        }
         console.log(data);
         this.setState({users:data.users});
         if(data.hasMore){
@@ -83,7 +86,7 @@ export default class DashBoard extends React.Component{
         console.log(xhr);
     }
     handleDelete(userid){
-        DeleteUsers.deleteUsers(Auth.getToken(),userid,this.handleSuccess,this.handleErrors);
+        DeleteUsers.deleteUsers(Auth.getToken(),userid,this.handleSuccess.bind(null,true),this.handleErrors);
         console.log("Delete outside the row");
     }
     render(){
