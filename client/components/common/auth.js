@@ -15,6 +15,7 @@ class Auth {
 
     static deauthenticateUser() {
         localStorage.clear();
+        location.reload();
     }
     static getUsername(){
         return localStorage.getItem('username');

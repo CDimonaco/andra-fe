@@ -27,9 +27,6 @@ export default class AddUser extends React.Component{
         this.setState({username:e.target.value});
     }
     componentWillMount(){
-        if(!Auth.isUserAuthenticated() && Auth.getRole() !== "1"){
-            this.props.history.push("/")
-        }
         console.log("Component loade");
     }
     handlePasswordChange(e){

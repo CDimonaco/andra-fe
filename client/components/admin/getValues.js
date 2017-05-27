@@ -23,9 +23,6 @@ export default class GetValues extends React.Component {
     }
 
     componentWillMount() {
-        if (!Auth.isUserAuthenticated() && Auth.getRole() !== "1") {
-            this.props.history.push("/")
-        }
         if (this.props.match.params.id) {
             this.setState({projectid: this.props.match.params.id});
             this.projectid = this.props.match.params.id;

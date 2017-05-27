@@ -46,9 +46,6 @@ export default class DashBoard extends React.Component{
         this.otherUsers = this.otherUsers.bind(this);
     }
     componentWillMount(){
-        if(!Auth.isUserAuthenticated() && Auth.getRole() !== "1"){
-            this.props.history.push("/")
-        }
         this.getUsers();
     }
 

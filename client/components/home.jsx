@@ -5,7 +5,8 @@ import React from "react"
 import Auth from "./common/auth.js"
 import login from "./common/connection.js"
 import Errors from "./common/errors.js"
-export default class Home extends React.Component{
+
+export default class Login extends React.Component{
 
     constructor(props){
         super(props);

@@ -2,13 +2,13 @@
  * Created by cdimonaco on 27/05/2017.
  */
 import React from "react"
-import Auth from "../common/auth.js"
-import ProjectRow from "../common/rows/projectRow.js"
-import Errors from "../common/errors.js"
-import getProjectAdmin from "../common/connection.js"
+import Auth from "../../common/auth.js"
+import ProjectRow from "../../common/rows/projectRow.js"
+import Errors from "../../common/errors.js"
+import getProjectAdmin from "../../common/connection.js"
 
 
-export default class GetProjects extends React.Component{
+export default class ProjectList extends React.Component{
     constructor(props){
         super(props);
 
@@ -16,13 +16,12 @@ export default class GetProjects extends React.Component{
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
         this.userid = "";
-        this.state = {projects:[],userid:"",errors:[]};
+        this.state = {projects:[],errors:[]};
     }
 
     componentWillMount(){
-        if(this.props.match.params.id){
-            this.setState({userid:this.props.match.params.id});
-            this.userid = this.props.match.params.id;
+        if(!Auth.isUserAuthenticated()){
+            this.props.history.push("/")
         }
         this.getProjects();
     }
@@ -53,7 +52,7 @@ export default class GetProjects extends React.Component{
             <div className="row">
                 <div className="col-lg-12">
                     <h2 className="page-header">
-                        {this.state.userid} - Progetti
+                        {Auth.getUsername()} - I tuoi progetti
                     </h2>
                 </div>
                 <div>
