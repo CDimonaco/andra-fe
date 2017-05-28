@@ -7,6 +7,7 @@ import ProjectList from "./projects/list.js"
 import AddProject from "./projects/new.js"
 import SensorList from "./sensors/list.js"
 import AddSensor from "./sensors/new.js"
+import ValuesList from "./values/list.js"
 
 export default class BasicRoutes extends React.Component{
     render() {
@@ -16,6 +17,7 @@ export default class BasicRoutes extends React.Component{
                 <Route path="/projects/:id/sensors" component={SensorList}/>
                 <Route path="/projects/new" component={AddProject}/>
                 <Route path="/sensors/:id/new" component={AddSensor}/>
+                <Route path="/sensors/:sensorid/values" component={ValuesList}/>
             </Switch>
         );
     }

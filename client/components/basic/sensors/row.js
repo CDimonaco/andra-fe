@@ -38,7 +38,7 @@ export default class SensorRow extends React.Component{
                 <td>{this.state.sensors.apikey}</td>
                 <td>
                         <button className="btn btn-danger" onClick={this.deleteSensor}>Elimina</button>
-                        <Link to={"/admin/project/"+this.state.project+"/"+this.state.sensors.id+"/values"}><button style={{marginLeft:6}} className="btn btn-success">Valori</button></Link>
+                        <Link to={"/sensors/"+this.state.sensors.id+"/values"}><button style={{marginLeft:6}} className="btn btn-success">Valori</button></Link>
                 </td>
             </tr>
         );
