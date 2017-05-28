@@ -40,7 +40,7 @@ export default class Login extends React.Component{
     handleSuccess(data){
         console.log(data);
         Auth.authenticateUser(data.accessToken,data.role,this.state.username);
-        this.props.history.push('/admin')
+        this.props.history.push('/')
     }
 
     render(){

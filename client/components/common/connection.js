@@ -187,4 +187,22 @@ let deleteProject = function(token,projectid,success, error){
         }.bind(this)
     });
 };
-export default {deleteProject:deleteProject,login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers,newUser:newUser,getProjects:getProjects,getProjectAdmin:getProjectAdmin,getSensors:getSensors,getValues:getValues,newProject:newProject}
+let deleteSensor = function(token,projectid,sensorid,success, error){
+    $.ajax({
+        url: devBase + "/sensors/" + projectid + "/" + sensorid,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'DELETE',
+        headers:{
+            "Authorization" : "Bearer "+token
+        },
+        timeout: 30000,
+        success: function(data) {
+            success(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+            error(xhr, status, err);
+        }.bind(this)
+    });
+};
+export default {deleteSensor:deleteSensor,deleteProject:deleteProject,login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers,newUser:newUser,getProjects:getProjects,getProjectAdmin:getProjectAdmin,getSensors:getSensors,getValues:getValues,newProject:newProject}

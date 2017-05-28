@@ -42,7 +42,7 @@ export default class ProjectRow extends React.Component{
                 <td>{this.state.project.createdAt}</td>
                 <td>
                     <button className="btn btn-danger" onClick={this.deleteProject}>Elimina progetto</button>
-                    <Link to={"/projects/"+this.state.project.id+"/sensors"}><button style={{marginRight:6}} className="btn btn-success">Sensori</button></Link>
+                    <Link to={"/projects/"+this.state.project.id+"/sensors"}><button style={{marginLeft:6}} className="btn btn-success">Sensori</button></Link>
                 </td>
             </tr>
         );
