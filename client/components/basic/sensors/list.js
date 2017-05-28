@@ -7,6 +7,7 @@ import getSensors from "../../common/connection.js"
 import SensorRow from "./row.js"
 import Errors from "../../common/errors.js"
 import deleteSensor from "../../common/connection.js"
+import {Link} from "react-router-dom"
 
 export default class SensorList extends React.Component {
     constructor(props) {
@@ -79,6 +80,11 @@ export default class SensorList extends React.Component {
                     <h2 className="page-header">
                         {Auth.getUsername()} - Progetto {this.state.projectid} - Sensori
                     </h2>
+                </div>
+                <div className="col-lg-12 text-center">
+                    <Link to={"/sensors/"+this.state.projectid+"/new"}>
+                        <button style={{marginBottom:8}} className="btn btn-primary">Nuovo Sensore</button>
+                    </Link>
                 </div>
                 <div>
                     <Errors errors={this.state.errors}/>

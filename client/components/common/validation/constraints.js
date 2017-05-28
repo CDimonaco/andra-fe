@@ -45,6 +45,11 @@ const validationConstraints = {
                 message:"mancante"
             }
         }
+    },
+    newSensor:{
+        nome:{
+            presence:"mancante"
+        }
     }
 };
 

@@ -6,6 +6,7 @@ import {Switch,Route,Redirect} from "react-router-dom"
 import ProjectList from "./projects/list.js"
 import AddProject from "./projects/new.js"
 import SensorList from "./sensors/list.js"
+import AddSensor from "./sensors/new.js"
 
 export default class BasicRoutes extends React.Component{
     render() {
@@ -14,6 +15,7 @@ export default class BasicRoutes extends React.Component{
                 <Route exact path="/" component={ProjectList}/>
                 <Route path="/projects/:id/sensors" component={SensorList}/>
                 <Route path="/projects/new" component={AddProject}/>
+                <Route path="/sensors/:id/new" component={AddSensor}/>
             </Switch>
         );
     }

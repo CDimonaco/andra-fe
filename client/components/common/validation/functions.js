@@ -33,3 +33,18 @@ export let validateNewProject = function (nome,descrizione) {
     }
     return response;
 };
+
+export let validateNewSensor = function(nome) {
+    let response = [];
+    let validation = Validate.validate({nome:nome},validationConstraints["newSensor"]);
+    if (validation !== undefined){
+        for(let key in validation){
+            //Ogni chiave del dizionario, quindi un errore di validazione
+            let value = validation[key];
+            value.map(function (item) {
+                response.push(item);
+            });
+        }
+    }
+    return response;
+}

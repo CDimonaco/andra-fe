@@ -60,6 +60,25 @@ let newProject = function (token,body,success,error) {
         }.bind(this)
     });
 };
+let newSensor = function (token,projectid,body,success,error) {
+    $.ajax({
+        url: devBase + "/sensors/"+projectid,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'POST',
+        headers:{
+            "Authorization" : "Bearer "+token
+        },
+        timeout: 30000,
+        data: JSON.stringify(body),
+        success: function(data) {
+            success(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+            error(xhr, status, err);
+        }.bind(this)
+    });
+};
 let getUsers = function(token,offset,success, error){
     $.ajax({
         url: devBase + "/user?offset=" + offset,
@@ -205,4 +224,4 @@ let deleteSensor = function(token,projectid,sensorid,success, error){
         }.bind(this)
     });
 };
-export default {deleteSensor:deleteSensor,deleteProject:deleteProject,login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers,newUser:newUser,getProjects:getProjects,getProjectAdmin:getProjectAdmin,getSensors:getSensors,getValues:getValues,newProject:newProject}
+export default {newSensor:newSensor,deleteSensor:deleteSensor,deleteProject:deleteProject,login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers,newUser:newUser,getProjects:getProjects,getProjectAdmin:getProjectAdmin,getSensors:getSensors,getValues:getValues,newProject:newProject}
