@@ -6,6 +6,7 @@ import Auth from "../../common/auth.js"
 import getValues from "../../common/connection.js"
 import ValuesRow from "./row.js";
 import Errors from "../../common/errors.js"
+import ValuesChart from "./chart.js"
 
 export default class ValuesList extends React.Component {
     constructor(props) {
@@ -18,7 +19,8 @@ export default class ValuesList extends React.Component {
         this.projectid = "";
         this.sensorid = "";
         this.lastoffset = 0;
-        this.state = {values: [],sensorid:"", errors: [],offset:0,hasmore:false};
+        this.state = {values: [],sensorid:this.props.match.params.sensorid, errors: [],offset:0,hasmore:false};
+        this.getValues();
     }
 
     componentWillMount() {
@@ -26,11 +28,10 @@ export default class ValuesList extends React.Component {
             this.setState({sensorid: this.props.match.params.sensorid});
             this.sensorid = this.props.match.params.sensorid;
         }
-        this.getValues();
     }
 
     getValues() {
-        getValues.getValues(Auth.getToken(),this.sensorid,this.state.offset,this.handleSuccess, this.handleErrors);
+        getValues.getValues(Auth.getToken(),this.state.sensorid,this.state.offset,this.handleSuccess, this.handleErrors);
         this.lastoffset = this.state.offset;
     }
     otherValues(){
@@ -69,6 +70,9 @@ export default class ValuesList extends React.Component {
                 </div>
                 <div>
                     <Errors errors={this.state.errors}/>
+                    {this.state.values.length > 0 ?
+                        <ValuesChart raw={this.state.values} />
+                    :false}
                     <table className="table table-bordered">
                         <thead>
                         <tr>
@@ -80,7 +84,7 @@ export default class ValuesList extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {this.state.values.map(function (item, index) {
+                        {this.state.values.map(function (item,index) {
                             return <ValuesRow value={item} key={index} listindex={index + 1}/>
                         })}
                         </tbody>

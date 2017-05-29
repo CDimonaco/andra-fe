@@ -47,4 +47,4 @@ export let validateNewSensor = function(nome) {
         }
     }
     return response;
-}
+};

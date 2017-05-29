@@ -10,8 +10,6 @@ import newUser from "../common/connection.js"
 export default class AddUser extends React.Component{
     constructor(props){
         super(props);
-        this.handleSuccess = this.handleSuccess.bind(this);
-        this.handleError = this.handleError.bind(this);
         this.createUser = this.createUser.bind(this);
         this.validateForm = this.validateForm.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -26,9 +24,7 @@ export default class AddUser extends React.Component{
     handleUsernameChange(e){
         this.setState({username:e.target.value});
     }
-    componentWillMount(){
-        console.log("Component loade");
-    }
+
     handlePasswordChange(e){
         this.setState({password:e.target.value});
     }

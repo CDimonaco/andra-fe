@@ -8,32 +8,7 @@ import GetUsers from "../common/connection.js"
 import DeleteUsers from "../common/connection.js"
 import Errors from "../common/errors.js";
 
-const mockUsers = [
-    {
-        "id" : "test",
-        "username" : "test2",
-        "role" : "test3",
-        "email" : "test4"
-    },
-    {
-        "id" : "test",
-        "username" : "test2",
-        "role" : "test3",
-        "email" : "test4"
-    },
-    {
-        "id" : "test",
-        "username" : "test2",
-        "role" : "test3",
-        "email" : "test4"
-    },
-    {
-        "id" : "test",
-        "username" : "test2",
-        "role" : "test3",
-        "email" : "test4"
-    }
-];
+
 export default class DashBoard extends React.Component{
     constructor(props){
         super(props);
