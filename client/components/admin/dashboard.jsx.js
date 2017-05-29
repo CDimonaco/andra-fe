@@ -8,7 +8,6 @@ import GetUsers from "../common/connection.js"
 import DeleteUsers from "../common/connection.js"
 import Errors from "../common/errors.js";
 
-
 export default class DashBoard extends React.Component{
     constructor(props){
         super(props);

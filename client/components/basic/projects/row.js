@@ -3,6 +3,7 @@
  */
 import React from "react"
 import {Link} from "react-router-dom"
+import ConfirmationModal from "../../common/confirmationModal.js"
 
 const ProjectRow = (props) => {
     const deleteProject = (e) =>{
@@ -18,9 +19,14 @@ const ProjectRow = (props) => {
         <td>{props.project.description}</td>
         <td>{props.project.createdAt}</td>
         <td>
-            <button className="btn btn-danger" onClick={deleteProject}>Elimina progetto</button>
+            <a data-toggle="modal" data-target={"#"+props.project.id}>
+                <button type="button" className="btn btn-danger">
+                    Elimina progetto
+                </button>
+            </a>
             <Link to={"/projects/"+props.project.id+"/sensors"}><button style={{marginLeft:6}} className="btn btn-success">Sensori</button></Link>
         </td>
-    </tr>);
+       <ConfirmationModal title={"Elimina progetto"} description={"Vuoi davvero cancellare il progetto?"} id={props.project.id} confirm={deleteProject} />
+   </tr>);
 };
 export default ProjectRow;

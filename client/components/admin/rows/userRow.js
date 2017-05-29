@@ -3,6 +3,7 @@
  */
 import React from "react"
 import {Link} from "react-router-dom"
+import ConfirmationModal from "./../../common/confirmationModal.js"
 
 
 const UserRow = (props) =>{
@@ -26,9 +27,14 @@ const UserRow = (props) =>{
             <td>{props.users.role}</td>
             <td>{props.users.email}</td>
             <td>
-                <button className="btn btn-danger" onClick={deleteUser}>Elimina utente</button>
+                <a data-toggle="modal" data-target={"#"+props.users.id}>
+                    <button type="button" className="btn btn-danger">
+                        Elimina utente
+                    </button>
+                </a>
                 <Link to={"/admin/project/"+props.users.id}><button style={{marginLeft:6}} className="btn btn-success">Progetti</button></Link>
             </td>
+            <ConfirmationModal title={"Elimina utente"} description={"Vuoi davvero cancellare l'utente?"} id={props.users.id} confirm={deleteUser} />
         </tr>
     );
 };

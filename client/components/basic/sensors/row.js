@@ -3,6 +3,7 @@
  */
 import React from "react"
 import {Link} from "react-router-dom"
+import ConfirmationModal from "../../common/confirmationModal.js"
 
 
 
@@ -21,9 +22,14 @@ const SensorRow = (props) => {
           <td>{props.sensor.name}</td>
           <td>{props.sensor.apikey}</td>
           <td>
-              <button className="btn btn-danger" onClick={deleteSensor}>Elimina</button>
+              <a data-toggle="modal" data-target={"#"+props.sensor.id}>
+                  <button type="button" className="btn btn-danger">
+                      Elimina sensore
+                  </button>
+              </a>
               <Link to={"/sensors/"+props.sensor.id+"/values"}><button style={{marginLeft:6}} className="btn btn-success">Valori</button></Link>
           </td>
+          <ConfirmationModal title={"Elimina sensore"} description={"Vuoi davvero cancellare il sensore?"} id={props.sensor.id} confirm={deleteSensor} />
       </tr>
   )
 };
