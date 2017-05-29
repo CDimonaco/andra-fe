@@ -31,14 +31,12 @@ export default class Login extends React.Component{
             ,3000)
     }
     handlePassword(e){
-        console.log("lol");
         this.setState({password:e.target.value});
     }
     handleUsername(e){
         this.setState({username:e.target.value});
     }
     handleSuccess(data){
-        console.log(data);
         Auth.authenticateUser(data.accessToken,data.role,this.state.username);
         this.props.history.push('/')
     }
