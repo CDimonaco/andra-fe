@@ -5,7 +5,7 @@ import React from 'react';
 
 const Errors = (props) =>{
     if(!props.errors || props.errors.length === 0){
-        return <tr></tr>
+        return <div></div>
     }
 
     return(
