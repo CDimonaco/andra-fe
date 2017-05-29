@@ -7,7 +7,7 @@ import {Link} from "react-router-dom"
 
 const UserRow = (props) =>{
 
-    const deleteUser = (e) =>{
+    const deleteUser = () =>{
         if(props.currentUsername === props.users.username){
             alert("Non puoi cancellare il tuo utente!"); //TODO:ALSO IN BACKEND
             return

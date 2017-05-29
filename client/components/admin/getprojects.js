@@ -3,7 +3,7 @@
  */
 import React from "react"
 import Auth from "../common/auth.js"
-import ProjectRow from "../common/rows/projectRow.js"
+import ProjectRow from "./rows/projectRow.js"
 import Errors from "../common/errors.js"
 import getProjectAdmin from "../common/connection.js"
 

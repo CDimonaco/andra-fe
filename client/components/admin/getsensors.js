@@ -4,7 +4,7 @@
 import React from "react"
 import Auth from "../common/auth.js"
 import getSensors from "../common/connection.js"
-import SensorRow from "../common/rows/sensorsRow.js";
+import SensorRow from "./rows/sensorsRow.js";
 import Errors from "../common/errors.js"
 
 export default class GetSensors extends React.Component {
