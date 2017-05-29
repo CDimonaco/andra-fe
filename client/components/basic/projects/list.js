@@ -19,7 +19,7 @@ export default class ProjectList extends React.Component{
         this.state = {projects:[],errors:[]};
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getProjects();
     }
 

@@ -18,28 +18,20 @@ export default class SensorList extends React.Component {
         this.handleErrors = this.handleErrors.bind(this);
         this.otherSensors = this.otherSensors.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-        this.projectid = "";
-        this.lastoffset = 0;
         this.state = {sensors: [], projectid: "", errors: [],offset:0,hasmore:false};
     }
 
-    componentWillMount() {
-        if (this.props.match.params.id) {
-            this.setState({projectid: this.props.match.params.id});
-            this.projectid = this.props.match.params.id;
-        }
+    componentDidMount() {
         this.getSensors();
     }
 
     handleDelete(id){
         console.log("Delete for id",id);
-        deleteSensor.deleteSensor(Auth.getToken(),this.projectid,id,this.handleSuccess.bind(null,true),this.handleErrors)
-
+        deleteSensor.deleteSensor(Auth.getToken(),this.props.match.params.id,id,this.handleSuccess.bind(null,true),this.handleErrors)
     }
 
     getSensors() {
-        getSensors.getSensors(Auth.getToken(), this.projectid,this.state.offset,this.handleSuccess, this.handleErrors);
-        this.lastoffset = this.state.offset;
+        getSensors.getSensors(Auth.getToken(),this.props.match.params.id,this.state.offset,this.handleSuccess, this.handleErrors);
     }
 
     otherSensors(){
@@ -48,14 +40,14 @@ export default class SensorList extends React.Component {
 
     handleSuccess(data,del) {
         if(del){
-            console.log("Deleted");
             location.reload();
         }
-        console.log("Sensors");
         let updatedSensors = data.sensors.concat(this.state.sensors);
         this.setState({sensors:updatedSensors},console.log(data));
         if(data.hasMore){
-            this.setState({hasmore:true,offset:this.lastoffset+100})
+            this.setState((prevState) => ({
+                offset: prevState.offset + 100,hasmore:true
+            }));
         }else{
             this.setState({hasmore:false});
 
@@ -78,11 +70,11 @@ export default class SensorList extends React.Component {
             <div className="row">
                 <div className="col-lg-12">
                     <h2 className="page-header">
-                        {Auth.getUsername()} - Progetto {this.state.projectid} - Sensori
+                        {Auth.getUsername()} - Progetto {this.props.match.params.id} - Sensori
                     </h2>
                 </div>
                 <div className="col-lg-12 text-center">
-                    <Link to={"/sensors/"+this.state.projectid+"/new"}>
+                    <Link to={"/sensors/"+this.props.match.params.id+"/new"}>
                         <button style={{marginBottom:8}} className="btn btn-primary">Nuovo Sensore</button>
                     </Link>
                 </div>

@@ -12,15 +12,16 @@ import Errors from "../common/errors.js";
 export default class DashBoard extends React.Component{
     constructor(props){
         super(props);
-        this.handleDelete = this.handleDelete.bind(this);
-        this.getUsers = this.getUsers.bind(this);
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.getUsers = this.getUsers.bind(this);
+        this.otherUsers = this.otherUsers.bind(this);
         this.lastoffset = 0;
         this.state = {users:[],errors:[],offset:0,hasmore:false,username:Auth.getUsername()};
-        this.otherUsers = this.otherUsers.bind(this);
     }
-    componentWillMount(){
+
+    componentDidMount(){
         this.getUsers();
     }
 
@@ -28,6 +29,7 @@ export default class DashBoard extends React.Component{
         GetUsers.getUsers(Auth.getToken(),this.state.offset,this.handleSuccess,this.handleErrors);
         this.lastoffset = this.state.offset;
     }
+
     handleSuccess(data,del){
         if(del){
             location.reload();
@@ -38,9 +40,11 @@ export default class DashBoard extends React.Component{
             this.setState({hasmore:true,offset:this.lastoffset+100})
         }
     }
+
     otherUsers(){
         this.getUsers();
     }
+
     handleErrors(xhr,status,err){
         if(xhr.status === 401 && xhr.responseJSON["msg"]){
             Auth.deauthenticateUser();

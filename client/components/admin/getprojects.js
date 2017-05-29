@@ -11,24 +11,18 @@ import getProjectAdmin from "../common/connection.js"
 export default class GetProjects extends React.Component{
     constructor(props){
         super(props);
-
         this.getProjects = this.getProjects.bind(this);
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
-        this.userid = "";
-        this.state = {projects:[],userid:"",errors:[]};
+        this.state = {projects:[],errors:[]};
     }
 
-    componentWillMount(){
-        if(this.props.match.params.id){
-            this.setState({userid:this.props.match.params.id});
-            this.userid = this.props.match.params.id;
-        }
+    componentDidMount(){
         this.getProjects();
     }
 
     getProjects(){
-        getProjectAdmin.getProjectAdmin(Auth.getToken(),this.userid,this.handleSuccess,this.handleErrors);
+        getProjectAdmin.getProjectAdmin(Auth.getToken(),this.props.match.params.id,this.handleSuccess,this.handleErrors);
     }
 
     handleSuccess(data){
@@ -53,7 +47,7 @@ export default class GetProjects extends React.Component{
             <div className="row">
                 <div className="col-lg-12">
                     <h2 className="page-header">
-                        {this.state.userid} - Progetti
+                        {this.props.match.params.id} - Progetti
                     </h2>
                 </div>
                 <div>

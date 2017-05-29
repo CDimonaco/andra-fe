@@ -15,19 +15,11 @@ export default class AddSensor extends React.Component{
         this.createSensor = this.createSensor.bind(this);
         this.validateForm = this.validateForm.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
-        this.projectid = "";
-        this.state = {name:"",errors:[],projectid:""}
+        this.state = {name:"",errors:[]}
     }
 
     handleNameChange(e){
         this.setState({name:e.target.value});
-    }
-
-    componentWillMount(){
-        if(this.props.match.params.id){
-            this.setState({projectid:this.props.match.params.id});
-            this.projectid = this.props.match.params.id;
-        }
     }
 
     handleSuccess(data){
@@ -36,7 +28,6 @@ export default class AddSensor extends React.Component{
     }
 
     handleError(xhr,status,err){
-        console.log(xhr.responseJSON["message"]);
         let raised = [xhr.responseJSON["message"]];
         this.setState({errors:raised});
         setTimeout(function () {
@@ -47,16 +38,14 @@ export default class AddSensor extends React.Component{
 
     createSensor(e){
         e.preventDefault();
-        console.log(this.state.name);
         if(this.validateForm()){
             let requestBody = {name:this.state.name};
-            newSensor.newSensor(Auth.getToken(),this.projectid,requestBody,this.handleSuccess,this.handleError);
+            newSensor.newSensor(Auth.getToken(),this.props.match.params.id,requestBody,this.handleSuccess,this.handleError);
         }
     }
 
     validateForm(){
         let validationErrors = validateNewSensor(this.state.name);
-        console.log(validationErrors);
         if(validationErrors.length > 0){
             this.setState({errors:validationErrors});
             setTimeout(function () {
@@ -78,7 +67,7 @@ export default class AddSensor extends React.Component{
                 <div className="col-lg-6 col-lg-offset-3">
                     <div className="panel panel-default">
                         <div className="panel-heading">
-                            <p>Progetto {this.state.projectid} - Nuovo sensore</p>
+                            <p>Progetto {this.props.match.params.id} - Nuovo sensore</p>
                         </div>
 
                         <div className="panel-body">

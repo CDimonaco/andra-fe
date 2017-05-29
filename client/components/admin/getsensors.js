@@ -10,37 +10,33 @@ import Errors from "../common/errors.js"
 export default class GetSensors extends React.Component {
     constructor(props) {
         super(props);
-
         this.getSensors = this.getSensors.bind(this);
+        this.otherSensors = this.otherSensors.bind(this);
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
-        this.otherSensors = this.otherSensors.bind(this);
-        this.projectid = "";
-        this.lastoffset = 0;
-        this.state = {sensors: [], projectid: "", errors: [],offset:0,hasmore:false};
+        this.state = {sensors: [],errors: [],offset:0,hasmore:false};
     }
 
-    componentWillMount() {
-        if (this.props.match.params.id) {
-            this.setState({projectid: this.props.match.params.id});
-            this.projectid = this.props.match.params.id;
-        }
+    componentDidMount() {
         this.getSensors();
     }
 
     getSensors() {
-        getSensors.getSensors(Auth.getToken(), this.projectid,this.state.offset,this.handleSuccess, this.handleErrors);
-        this.lastoffset = this.state.offset;
+        getSensors.getSensors(Auth.getToken(),this.props.match.params.id,this.state.offset,this.handleSuccess, this.handleErrors);
     }
+
     otherSensors(){
         this.getSensors();
     }
+
     handleSuccess(data) {
         console.log("Sensors");
         let updatedSensors = data.sensors.concat(this.state.sensors);
         this.setState({sensors:updatedSensors},console.log(data));
         if(data.hasMore){
-            this.setState({hasmore:true,offset:this.lastoffset+100})
+            this.setState((prevState) => ({
+                offset: prevState.offset + 100,hasmore:true
+            }));
         }else{
             this.setState({hasmore:false});
 
@@ -63,7 +59,7 @@ export default class GetSensors extends React.Component {
             <div className="row">
                 <div className="col-lg-12">
                     <h2 className="page-header">
-                        {this.state.projectid} - Sensori
+                        {this.props.match.params.id} - Sensori
                     </h2>
                 </div>
                 <div>
@@ -80,7 +76,7 @@ export default class GetSensors extends React.Component {
                         </thead>
                         <tbody>
                         {this.state.sensors.map(function (item, index) {
-                            return <SensorRow project ={this.state.projectid} sensor={item} key={index} listindex={index + 1}/>
+                            return <SensorRow project ={this.props.match.params.id} sensor={item} key={index} listindex={index + 1}/>
                         }.bind(this))}
                         </tbody>
                     </table>

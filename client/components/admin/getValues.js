@@ -16,38 +16,30 @@ export default class GetValues extends React.Component {
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
         this.otherValues = this.otherValues.bind(this);
-        this.projectid = "";
-        this.sensorid = "";
-        this.lastoffset = 0;
-        this.state = {values: [],sensorid:"",projectid: "", errors: [],offset:0,hasmore:false};
+        this.state = {values: [],errors: [],offset:0,hasmore:false};
     }
 
-    componentWillMount() {
-        if (this.props.match.params.id) {
-            this.setState({projectid: this.props.match.params.id});
-            this.projectid = this.props.match.params.id;
-        }
-        if (this.props.match.params.sensorid) {
-            this.setState({sensorid: this.props.match.params.sensorid});
-            this.sensorid = this.props.match.params.sensorid;
-        }
+    componentDidMount() {
         this.getValues();
     }
 
     getValues() {
-        getValues.getValues(Auth.getToken(),this.sensorid,this.state.offset,this.handleSuccess, this.handleErrors);
-        this.lastoffset = this.state.offset;
+        getValues.getValues(Auth.getToken(),this.props.match.params.sensorid,this.state.offset,this.handleSuccess, this.handleErrors);
     }
+
     otherValues(){
         this.getValues();
     }
+
     handleSuccess(data) {
         console.log("Values");
         console.log(data);
         let updatedData = data.values.concat(this.state.values);
         this.setState({values:updatedData});
         if(data.hasMore){
-            this.setState({hasmore:true,offset:this.lastoffset+100})
+            this.setState((prevState) => ({
+                offset: prevState.offset + 100,hasmore:true
+            }));
         }else{
             this.setState({hasmore:false})
         }
@@ -69,7 +61,7 @@ export default class GetValues extends React.Component {
             <div className="row">
                 <div className="col-lg-12">
                     <h2 className="page-header">
-                        {this.state.projectid} - {this.state.sensorid} - Valori rilevati
+                        {this.props.match.params.id} - {this.props.match.params.sensorid} - Valori rilevati
                     </h2>
                 </div>
                 <div>
