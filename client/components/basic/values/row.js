@@ -4,37 +4,19 @@
 import React from "react"
 
 
-export default class ValuesRow extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {values:{},listindex:""}
-    }
+const ValuesRow = (props) => {
+  if(!props.value){
+      return <tr></tr>
+  }
+  return(
+      <tr>
+          <td>{props.listindex}</td>
+          <td>{props.value.id}</td>
+          <td>{props.value.value}</td>
+          <td>{props.value.additional}</td>
+          <td>{props.value.timestamp}</td>
+      </tr>
+  )
+};
 
-    componentWillMount(){
-        console.log("will mount");
-        if(this.props.value){
-            this.setState({values:this.props.value})
-        }
-
-        if(this.props.listindex){
-            this.setState({listindex:this.props.listindex})
-        }
-    }
-
-    render(){
-        if(!this.state.values){
-            return(<tr></tr>);
-        }
-
-        return(
-
-            <tr>
-                <td>{this.state.listindex}</td>
-                <td>{this.state.values.id}</td>
-                <td>{this.state.values.value}</td>
-                <td>{this.state.values.additional}</td>
-                <td>{this.state.values.timestamp}</td>
-            </tr>
-        );
-    }
-}
+export default ValuesRow;

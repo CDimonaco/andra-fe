@@ -5,7 +5,7 @@ import React from "react"
 import {Line} from 'react-chartjs-2';
 
 const graphConfiguration = {
-    labels: ['-1', '-2', '-3', '-4', '-5', '-6'],
+    labels: ['0', '-1', '-2', '-3', '-4', '-5','6'],
     datasets: [
         {
             label: 'Rilevazioni nelle precedenti sei ore',
@@ -43,7 +43,7 @@ export default class ValuesChart extends React.Component{
         //Dei valori di input filtreremo quelli delle passate sei ore e li inseriremo in degli array divisi per ora.
         //Dopodichè calcoleremo la media per ognuno e genereremo il punto sul grafico.
         let graphvalues = [];
-        let timeslices = {0:[],1:[],2:[],3:[],4:[],5:[]};
+        let timeslices = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]};
         let now = new Date();
         let ago = new Date(now - 6*60*60*1000);
         console.log(ago);
@@ -71,7 +71,6 @@ export default class ValuesChart extends React.Component{
             let avg = sum/timeslices[key].length;
             graphvalues.push(avg);
         }
-        console.log("before check if");
         console.log(graphvalues.length);
         if(graphvalues.length === 6){
             console.log("here");
@@ -91,7 +90,7 @@ export default class ValuesChart extends React.Component{
             <div style={{marginBottom:15}}>
                 {this.state.show ?
                     <Line data={this.state.data}/>
-                :false}
+                :<h4 className="text-center">Non ci sono abbastanza valori per comporre il grafico</h4>}
             </div>
         );
     }

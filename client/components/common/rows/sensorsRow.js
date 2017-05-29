@@ -5,44 +5,23 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 
-export default class SensorRow extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {sensors:{},listindex:"",project:""}
+
+const SensorRow = (props) =>{
+    if(!props.sensor){
+        return <tr></tr>
     }
 
-    componentWillMount(){
-        console.log("will mount");
-        if(this.props.sensor){
-            this.setState({sensors:this.props.sensor})
-        }
-        if(this.props.project){
-            this.setState({project:this.props.project})
-        }
+    return(
+        <tr>
+            <td>{props.listindex}</td>
+            <td>{props.sensor.id}</td>
+            <td>{props.sensor.name}</td>
+            <td>{props.sensor.apikey}</td>
+            <td>
+                    <Link to={"/admin/project/"+props.project+"/"+props.sensor.id+"/values"}><button style={{marginLeft:6}} className="btn btn-success">Valori</button></Link>
+            </td>
+        </tr>
+    );
+};
 
-        if(this.props.listindex){
-            this.setState({listindex:this.props.listindex})
-        }
-    }
-
-    render(){
-        if(!this.state.sensors){
-            return(<tr></tr>);
-        }
-
-        return(
-
-            <tr>
-                <td>{this.state.listindex}</td>
-                <td>{this.state.sensors.id}</td>
-                <td>{this.state.sensors.name}</td>
-                <td>{this.state.sensors.apikey}</td>
-                <td>
-                    <td>
-                        <Link to={"/admin/project/"+this.state.project+"/"+this.state.sensors.id+"/values"}><button style={{marginLeft:6}} className="btn btn-success">Valori</button></Link>
-                    </td>
-                </td>
-            </tr>
-        );
-    }
-}
+export default SensorRow;

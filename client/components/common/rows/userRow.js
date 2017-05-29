@@ -5,49 +5,32 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 
-export default class UserRow extends React.Component{
-    constructor(props){
-        super(props);
-        this.deleteUser = this.deleteUser.bind(this);
-        this.state = {users:{},listindex:""}
-    }
+const UserRow = (props) =>{
 
-    componentWillMount(){
-        if(this.props.users){
-            this.setState({users:this.props.users})
-        }
-
-        if(this.props.listindex){
-            this.setState({listindex:this.props.listindex})
-        }
-    }
-    deleteUser(){
-        console.log("Delete user inside component");
-        if(this.props.currentUsername === this.state.users.username){
+    const deleteUser = (e) =>{
+        if(props.currentUsername === props.users.username){
             alert("Non puoi cancellare il tuo utente!"); //TODO:ALSO IN BACKEND
-            return;
+            return
         }
-        this.props.handleDelete(this.state.users.id);
+        props.handleDelete(props.users.id);
+    };
+
+    if(!props.users){
+        return <tr></tr>
     }
+    return(
+        <tr>
+            <td>{props.listindex}</td>
+            <td>{props.users.id}</td>
+            <td>{props.users.username}</td>
+            <td>{props.users.role}</td>
+            <td>{props.users.email}</td>
+            <td>
+                <button className="btn btn-danger" onClick={deleteUser}>Elimina utente</button>
+                <Link to={"/admin/project/"+props.users.id}><button style={{marginLeft:6}} className="btn btn-success">Progetti</button></Link>
+            </td>
+        </tr>
+    );
+};
 
-    render(){
-        if(!this.state.users){
-            return(<tr></tr>);
-        }
-
-        return(
-
-            <tr>
-                <td>{this.state.listindex}</td>
-                <td>{this.state.users.id}</td>
-                <td>{this.state.users.username}</td>
-                <td>{this.state.users.role}</td>
-                <td>{this.state.users.email}</td>
-                <td>
-                    <button className="btn btn-danger" onClick={this.deleteUser}>Elimina utente</button>
-                    <Link to={"/admin/project/"+this.state.users.id}><button style={{marginLeft:6}} className="btn btn-success">Progetti</button></Link>
-                </td>
-            </tr>
-        );
-    }
-}
+export default UserRow;

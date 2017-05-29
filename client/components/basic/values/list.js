@@ -16,24 +16,17 @@ export default class ValuesList extends React.Component {
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
         this.otherValues = this.otherValues.bind(this);
-        this.projectid = "";
-        this.sensorid = "";
-        this.lastoffset = 0;
         this.state = {values: [],sensorid:this.props.match.params.sensorid, errors: [],offset:0,hasmore:false};
+    }
+
+    componentDidMount() {
         this.getValues();
     }
 
-    componentWillMount() {
-        if (this.props.match.params.sensorid) {
-            this.setState({sensorid: this.props.match.params.sensorid});
-            this.sensorid = this.props.match.params.sensorid;
-        }
+    getValues() {
+        getValues.getValues(Auth.getToken(),this.props.match.params.sensorid,this.state.offset,this.handleSuccess, this.handleErrors);
     }
 
-    getValues() {
-        getValues.getValues(Auth.getToken(),this.state.sensorid,this.state.offset,this.handleSuccess, this.handleErrors);
-        this.lastoffset = this.state.offset;
-    }
     otherValues(){
         this.getValues();
     }
@@ -43,7 +36,9 @@ export default class ValuesList extends React.Component {
         let updatedData = data.values.concat(this.state.values);
         this.setState({values:updatedData});
         if(data.hasMore){
-            this.setState({hasmore:true,offset:this.lastoffset+100})
+            this.setState((prevState) => ({
+                offset: prevState.offset + 100,hasmore:true
+            }));
         }else{
             this.setState({hasmore:false})
         }
@@ -65,7 +60,7 @@ export default class ValuesList extends React.Component {
             <div className="row">
                 <div className="col-lg-12">
                     <h2 className="page-header">
-                        {this.state.sensorid} - Valori rilevati
+                        {this.props.match.params.sensorid} - Valori rilevati
                     </h2>
                 </div>
                 <div>
