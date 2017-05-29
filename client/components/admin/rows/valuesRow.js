@@ -2,6 +2,7 @@
  * Created by cdimonaco on 27/05/2017.
  */
 import React from "react"
+import PropTypes from "prop-types"
 
 const ValuesRow = (props) => {
   if(!props.value){
@@ -17,6 +18,10 @@ const ValuesRow = (props) => {
           <td>{props.value.timestamp}</td>
       </tr>
   )
+};
+
+ValuesRow.propTypes = {
+  value:PropTypes.object.isRequired
 };
 
 export default ValuesRow;

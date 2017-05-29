@@ -4,7 +4,7 @@
 import React from "react"
 import {Link} from "react-router-dom"
 import ConfirmationModal from "./../../common/confirmationModal.js"
-
+import PropTypes from "prop-types"
 
 const UserRow = (props) =>{
 
@@ -39,4 +39,7 @@ const UserRow = (props) =>{
     );
 };
 
+UserRow.propTypes = {
+    users:PropTypes.object.isRequired
+};
 export default UserRow;

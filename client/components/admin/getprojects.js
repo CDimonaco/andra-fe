@@ -6,6 +6,7 @@ import Auth from "../common/auth.js"
 import ProjectRow from "./rows/projectRow.js"
 import Errors from "../common/errors.js"
 import getProjectAdmin from "../common/connection.js"
+import PropTypes from "prop-types"
 
 
 export default class GetProjects extends React.Component{
@@ -74,3 +75,11 @@ export default class GetProjects extends React.Component{
         );
     }
 }
+
+GetProjects.propTypes = {
+    match:PropTypes.shape({
+        params:PropTypes.shape({
+            id:PropTypes.string.isRequired
+        })
+    })
+};

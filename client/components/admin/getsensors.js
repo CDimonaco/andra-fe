@@ -6,6 +6,8 @@ import Auth from "../common/auth.js"
 import getSensors from "../common/connection.js"
 import SensorRow from "./rows/sensorsRow.js";
 import Errors from "../common/errors.js"
+import PropTypes from "prop-types"
+
 
 export default class GetSensors extends React.Component {
     constructor(props) {
@@ -90,3 +92,11 @@ export default class GetSensors extends React.Component {
         );
     }
 }
+
+GetSensors.propTypes = {
+    match:PropTypes.shape({
+        params:PropTypes.shape({
+            id:PropTypes.string.isRequired
+        })
+    })
+};

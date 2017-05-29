@@ -4,9 +4,10 @@
 import React from "react"
 import {Link} from "react-router-dom"
 import ConfirmationModal from "../../common/confirmationModal.js"
+import PropTypes from "prop-types"
 
 const ProjectRow = (props) => {
-    const deleteProject = (e) =>{
+    const deleteProject = () =>{
         props.handleDelete(props.project.id);
     };
     if(!props.project){
@@ -28,5 +29,9 @@ const ProjectRow = (props) => {
         </td>
        <ConfirmationModal title={"Elimina progetto"} description={"Vuoi davvero cancellare il progetto?"} id={props.project.id} confirm={deleteProject} />
    </tr>);
+};
+
+ProjectRow.PropTypes = {
+  project:PropTypes.object.isRequired
 };
 export default ProjectRow;

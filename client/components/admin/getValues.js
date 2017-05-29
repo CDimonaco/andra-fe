@@ -4,9 +4,10 @@
 import React from "react"
 import Auth from "../common/auth.js"
 import getValues from "../common/connection.js"
-import valuesRow from "./rows/valuesRow.js";
 import Errors from "../common/errors.js"
-import ValuesRow from "./rows/valuesRow";
+import ValuesRow from "./rows/valuesRow.js";
+import PropTypes from "prop-types"
+
 
 export default class GetValues extends React.Component {
     constructor(props) {
@@ -92,3 +93,12 @@ export default class GetValues extends React.Component {
         );
     }
 }
+
+GetValues.propTypes = {
+    match:PropTypes.shape({
+        params:PropTypes.shape({
+            id:PropTypes.string.isRequired,
+            sensorid:PropTypes.string.isRequired
+        })
+    })
+};

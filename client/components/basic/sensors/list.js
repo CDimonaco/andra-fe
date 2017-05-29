@@ -8,6 +8,7 @@ import SensorRow from "./row.js"
 import Errors from "../../common/errors.js"
 import deleteSensor from "../../common/connection.js"
 import {Link} from "react-router-dom"
+import PropTypes from "prop-types"
 
 export default class SensorList extends React.Component {
     constructor(props) {
@@ -18,7 +19,7 @@ export default class SensorList extends React.Component {
         this.handleErrors = this.handleErrors.bind(this);
         this.otherSensors = this.otherSensors.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-        this.state = {sensors: [], projectid: "", errors: [],offset:0,hasmore:false};
+        this.state = {sensors: [], errors: [],offset:0,hasmore:false};
     }
 
     componentDidMount() {
@@ -106,3 +107,13 @@ export default class SensorList extends React.Component {
         );
     }
 }
+
+SensorList.propTypes = {
+    match:PropTypes.shape({
+        params:PropTypes.shape({
+            id:PropTypes.string.isRequired,
+
+        })
+    })
+};
+

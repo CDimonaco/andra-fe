@@ -6,6 +6,7 @@ import Auth from "../../common/auth.js"
 import {validateNewSensor} from "../../common/validation/functions.js";
 import Errors from "../../common/errors.js"
 import newSensor from "../../common/connection.js"
+import PropTypes from "prop-types"
 
 export default class AddSensor extends React.Component{
     constructor(props){

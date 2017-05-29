@@ -74,7 +74,7 @@ export default class ValuesChart extends React.Component{
             graphvalues.push(avg);
         }
         console.log(graphvalues.length);
-        if(graphvalues.length === 6){
+        if(graphvalues.length === 7){
             console.log("here");
             let graphConf = graphConfiguration;
             graphConf["datasets"][0]["data"] = graphvalues;
