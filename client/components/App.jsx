@@ -6,15 +6,13 @@ import Nav from "./common/nav/nav.jsx"
     e della pagina data dalla route scelta.
  */
 
-
-export default class App extends React.Component {
-  render() {
-    return (
+const App = () =>{
+    return(
         <div>
-            <Nav/>
+            <Nav />
             <Main/>
         </div>
-    );
-  }
-}
+    )
+};
+export default App;
 

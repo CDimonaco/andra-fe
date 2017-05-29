@@ -21,7 +21,6 @@ let authenticationBackend = function(username,password,success,error){
         }.bind(this)
     });
 };
-
 let newUser = function (token,body,success,error) {
     $.ajax({
         url: devBase + "/user",

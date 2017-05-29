@@ -8,27 +8,27 @@ import BasicRoutes from "./basic/routes.js"
 import Auth from "./common/auth.js"
 import Login from "./home.jsx"
 
-export default class Main extends React.Component{
-    render() {
-        return(
-            <Switch>
-                <Route path="/admin"  render={props => (
-                    Auth.getRole() === "1" && Auth.isUserAuthenticated() ? (
-                        <AdminRoutes {...props}/>
-                    ) : (
-                        <Redirect to={{
-                            pathname: '/'
-                        }}/>
-                    )
-                )} />
-                <Route path="/" render={props => (
-                    !Auth.isUserAuthenticated() ? (
-                        <Login {...props}/>
-                    ) : (
-                        <BasicRoutes {...props}/>
-                    )
-                )} />
-            </Switch>
-        );
-    };
-}
+const Main = () =>{
+    return(
+        <Switch>
+            <Route path="/admin"  render={props => (
+                Auth.getRole() === "1" && Auth.isUserAuthenticated() ? (
+                    <AdminRoutes {...props}/>
+                ) : (
+                    <Redirect to={{
+                        pathname: '/'
+                    }}/>
+                )
+            )} />
+            <Route path="/" render={props => (
+                !Auth.isUserAuthenticated() ? (
+                    <Login {...props}/>
+                ) : (
+                    <BasicRoutes {...props}/>
+                )
+            )} />
+        </Switch>
+    )
+};
+
+export default Main;
