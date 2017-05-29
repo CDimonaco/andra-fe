@@ -4,8 +4,7 @@
 import React from "react"
 import {Link} from "react-router-dom"
 import ConfirmationModal from "../../common/confirmationModal.js"
-
-
+import PropTypes from "prop-types"
 
 const SensorRow = (props) => {
   const deleteSensor = (e) => {
@@ -33,5 +32,7 @@ const SensorRow = (props) => {
       </tr>
   )
 };
-
+SensorRow.propTypes = {
+    sensor:PropTypes.object.isRequired
+};
 export default SensorRow;

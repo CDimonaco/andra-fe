@@ -2,6 +2,7 @@
  * Created by cdimonaco on 29/05/2017.
  */
 import React from "react"
+import PropTypes from "prop-types"
 
 const ConfirmationModal = (props) => {
 
@@ -34,4 +35,12 @@ const ConfirmationModal = (props) => {
       </div>
   )
 };
+
+ConfirmationModal.propTypes = {
+  id:PropTypes.string.isRequired,
+  description:PropTypes.string.isRequired,
+  title:PropTypes.string.isRequired,
+  confirm:PropTypes.func.isRequired
+};
+
 export default ConfirmationModal;

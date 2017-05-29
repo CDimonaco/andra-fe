@@ -7,6 +7,7 @@ import getValues from "../../common/connection.js"
 import ValuesRow from "./row.js";
 import Errors from "../../common/errors.js"
 import ValuesChart from "./chart.js"
+import PropTypes from "prop-types"
 
 export default class ValuesList extends React.Component {
     constructor(props) {
@@ -94,3 +95,11 @@ export default class ValuesList extends React.Component {
         );
     }
 }
+
+ValuesList.propTypes = {
+    match:PropTypes.shape({
+        params:PropTypes.shape({
+            sensorid:PropTypes.string.isRequired
+        })
+    })
+};

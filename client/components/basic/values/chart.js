@@ -3,12 +3,13 @@
  */
 import React from "react"
 import {Line} from 'react-chartjs-2';
+import PropTypes from "prop-types"
 
 const graphConfiguration = {
-    labels: ['0', '-1', '-2', '-3', '-4', '-5','6'],
+    labels: ['0', '-1', '-2', '-3', '-4', '-5','-6'],
     datasets: [
         {
-            label: 'Rilevazioni nelle precedenti sei ore',
+            label: 'Rilevazioni nelle ultime sei ore',
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(75,192,192,0.4)',
@@ -30,6 +31,7 @@ const graphConfiguration = {
         }
     ]
 };
+
 export default class ValuesChart extends React.Component{
     constructor(props){
         super(props);
@@ -96,4 +98,6 @@ export default class ValuesChart extends React.Component{
     }
 }
 
-    
+ValuesChart.propTypes = {
+  raw:PropTypes.array.isRequired
+};

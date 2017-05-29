@@ -2,6 +2,7 @@
  * Created by cdimonaco on 24/05/2017.
  */
 import React from 'react';
+import PropTypes from "prop-types"
 
 const Errors = (props) =>{
     if(!props.errors || props.errors.length === 0){
@@ -16,4 +17,9 @@ const Errors = (props) =>{
         </div>
     )
 };
+
+Errors.propTypes = {
+    errors:PropTypes.array.isRequired
+};
+
 export default Errors;
