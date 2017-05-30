@@ -2,7 +2,7 @@
  * Created by cdimonaco on 24/05/2017.
  */
 
-const devBase = "http://34.251.171.152/api";
+const devBase = "http://52.214.203.17/api";
 
 
 let authenticationBackend = function(username,password,success,error){
