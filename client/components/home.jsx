@@ -46,7 +46,7 @@ export default class Login extends React.Component{
                 <div className="row">
                     <div className="row" style={{marginBottom:25}}>
                         <div className="col-lg-6">
-                            <img width={200} height={400} className="img-responsive center-block" src={"../client/components/common/LOGO.PNG"}/>
+                            <img width={200} height={400} className="img-responsive center-block" src={"LOGO.png"}/>
                         </div>
                         <div className="col-lg-6">
                             <h2>A.N.D.R.A</h2>
