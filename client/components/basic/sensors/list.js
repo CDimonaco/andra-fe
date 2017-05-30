@@ -3,10 +3,10 @@
  */
 import React from "react"
 import Auth from "../../common/auth.js"
-import getSensors from "../../common/connection.js"
+import {getSensors} from "../../common/connection.js"
 import SensorRow from "./row.js"
 import Errors from "../../common/errors.js"
-import deleteSensor from "../../common/connection.js"
+import {deleteSensor} from "../../common/connection.js"
 import {Link} from "react-router-dom"
 import PropTypes from "prop-types"
 
@@ -28,11 +28,11 @@ export default class SensorList extends React.Component {
 
     handleDelete(id){
         console.log("Delete for id",id);
-        deleteSensor.deleteSensor(Auth.getToken(),this.props.match.params.id,id,this.handleSuccess.bind(null,true),this.handleErrors)
+        deleteSensor(Auth.getToken(),this.props.match.params.id,id,this.handleSuccess.bind(null,true),this.handleErrors)
     }
 
     getSensors() {
-        getSensors.getSensors(Auth.getToken(),this.props.match.params.id,this.state.offset,this.handleSuccess, this.handleErrors);
+        getSensors(Auth.getToken(),this.props.match.params.id,this.state.offset,this.handleSuccess, this.handleErrors);
     }
 
     otherSensors(){

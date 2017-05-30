@@ -5,7 +5,7 @@ import React from "react"
 import Auth from "../../common/auth.js"
 import {validateNewSensor} from "../../common/validation/functions.js";
 import Errors from "../../common/errors.js"
-import newSensor from "../../common/connection.js"
+import {newSensor} from "../../common/connection.js"
 import PropTypes from "prop-types"
 
 export default class AddSensor extends React.Component{
@@ -41,7 +41,7 @@ export default class AddSensor extends React.Component{
         e.preventDefault();
         if(this.validateForm()){
             let requestBody = {name:this.state.name};
-            newSensor.newSensor(Auth.getToken(),this.props.match.params.id,requestBody,this.handleSuccess,this.handleError);
+            newSensor(Auth.getToken(),this.props.match.params.id,requestBody,this.handleSuccess,this.handleError);
         }
     }
 

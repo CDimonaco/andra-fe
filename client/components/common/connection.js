@@ -223,4 +223,5 @@ let deleteSensor = function(token,projectid,sensorid,success, error){
         }.bind(this)
     });
 };
-export default {newSensor:newSensor,deleteSensor:deleteSensor,deleteProject:deleteProject,login:authenticationBackend,getUsers:getUsers,deleteUsers:deleteUsers,newUser:newUser,getProjects:getProjects,getProjectAdmin:getProjectAdmin,getSensors:getSensors,getValues:getValues,newProject:newProject}
+
+export {newSensor,deleteSensor,deleteProject,authenticationBackend,getUsers,deleteUsers,newUser,getProjects,getProjectAdmin,getSensors,getValues,newProject}

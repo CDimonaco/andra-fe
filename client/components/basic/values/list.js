@@ -3,7 +3,7 @@
  */
 import React from "react"
 import Auth from "../../common/auth.js"
-import getValues from "../../common/connection.js"
+import {getValues} from "../../common/connection.js"
 import ValuesRow from "./row.js";
 import Errors from "../../common/errors.js"
 import ValuesChart from "./chart.js"
@@ -25,7 +25,7 @@ export default class ValuesList extends React.Component {
     }
 
     getValues() {
-        getValues.getValues(Auth.getToken(),this.props.match.params.sensorid,this.state.offset,this.handleSuccess, this.handleErrors);
+        getValues(Auth.getToken(),this.props.match.params.sensorid,this.state.offset,this.handleSuccess, this.handleErrors);
     }
 
     otherValues(){

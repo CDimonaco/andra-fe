@@ -5,7 +5,7 @@ import React from "react"
 import Auth from "../common/auth.js"
 import {validateNewUser} from "../common/validation/functions.js";
 import Errors from "../common/errors.js"
-import newUser from "../common/connection.js"
+import {newUser} from "../common/connection.js"
 
 export default class AddUser extends React.Component{
     constructor(props){
@@ -59,7 +59,7 @@ export default class AddUser extends React.Component{
         console.log(this.state.username,this.state.password,this.state.email,this.state.role);
         if(this.validateForm()){
             let requestBody = {username:this.state.username,password:this.state.password,email:this.state.email,role:parseInt(this.state.role)};
-            newUser.newUser(Auth.getToken(),requestBody,this.handleSuccess,this.handleError);
+            newUser(Auth.getToken(),requestBody,this.handleSuccess,this.handleError);
         }
     }
 

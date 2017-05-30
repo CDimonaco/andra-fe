@@ -3,7 +3,7 @@
  */
 import React from "react"
 import Auth from "./common/auth.js"
-import login from "./common/connection.js"
+import {authenticationBackend as login} from "./common/connection.js"
 import Errors from "./common/errors.js"
 
 export default class Login extends React.Component{
@@ -20,7 +20,7 @@ export default class Login extends React.Component{
 
     tryLogin(e){
          e.preventDefault();
-         login.login(this.state.username, this.state.password,this.handleSuccess,this.handleError)
+         login(this.state.username, this.state.password,this.handleSuccess,this.handleError)
     }
     handleError(xhr,status,err){
         let raised = [xhr.responseJSON["message"]];

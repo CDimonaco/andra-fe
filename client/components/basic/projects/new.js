@@ -5,7 +5,7 @@ import React from "react"
 import Auth from "../../common/auth.js"
 import {validateNewProject} from "../../common/validation/functions.js";
 import Errors from "../../common/errors.js"
-import newProject from "../../common/connection.js"
+import {newProject} from "../../common/connection.js"
 
 export default class AddProject extends React.Component{
     constructor(props){
@@ -49,7 +49,7 @@ export default class AddProject extends React.Component{
         console.log(this.state.name,this.state.description);
         if(this.validateForm()){
             let requestBody = {name:this.state.name,description:this.state.description};
-            newProject.newProject(Auth.getToken(),requestBody,this.handleSuccess,this.handleError);
+            newProject(Auth.getToken(),requestBody,this.handleSuccess,this.handleError);
         }
     }
 

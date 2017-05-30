@@ -4,8 +4,8 @@
 import React from "react"
 import Auth from "../common/auth.js"
 import UserRow from "./rows/userRow.js"
-import GetUsers from "../common/connection.js"
-import DeleteUsers from "../common/connection.js"
+import {getUsers} from "../common/connection.js"
+import {deleteUsers} from "../common/connection.js"
 import Errors from "../common/errors.js";
 
 export default class DashBoard extends React.Component{
@@ -25,7 +25,7 @@ export default class DashBoard extends React.Component{
     }
 
     getUsers(){
-        GetUsers.getUsers(Auth.getToken(),this.state.offset,this.handleSuccess,this.handleErrors);
+        getUsers(Auth.getToken(),this.state.offset,this.handleSuccess,this.handleErrors);
         this.lastoffset = this.state.offset;
     }
 
@@ -61,7 +61,7 @@ export default class DashBoard extends React.Component{
         console.log(xhr);
     }
     handleDelete(userid){
-        DeleteUsers.deleteUsers(Auth.getToken(),userid,this.handleSuccess.bind(null,true),this.handleErrors);
+        deleteUsers(Auth.getToken(),userid,this.handleSuccess.bind(null,true),this.handleErrors);
         console.log("Delete outside the row");
     }
     render(){

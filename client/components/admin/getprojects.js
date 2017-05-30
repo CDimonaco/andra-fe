@@ -5,7 +5,7 @@ import React from "react"
 import Auth from "../common/auth.js"
 import ProjectRow from "./rows/projectRow.js"
 import Errors from "../common/errors.js"
-import getProjectAdmin from "../common/connection.js"
+import {getProjectAdmin} from "../common/connection.js"
 import PropTypes from "prop-types"
 
 
@@ -23,7 +23,7 @@ export default class GetProjects extends React.Component{
     }
 
     getProjects(){
-        getProjectAdmin.getProjectAdmin(Auth.getToken(),this.props.match.params.id,this.handleSuccess,this.handleErrors);
+        getProjectAdmin(Auth.getToken(),this.props.match.params.id,this.handleSuccess,this.handleErrors);
     }
 
     handleSuccess(data){

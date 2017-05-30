@@ -5,8 +5,8 @@ import React from "react"
 import Auth from "../../common/auth.js"
 import ProjectRow from "./row.js"
 import Errors from "../../common/errors.js"
-import getProjects from "../../common/connection.js"
-import deleteProjects from "../../common/connection.js"
+import {getProjects} from "../../common/connection.js"
+import {deleteProject} from "../../common/connection.js"
 
 export default class ProjectList extends React.Component{
     constructor(props){
@@ -24,7 +24,7 @@ export default class ProjectList extends React.Component{
     }
 
     getProjects(){
-        getProjects.getProjects(Auth.getToken(),this.handleSuccess,this.handleErrors);
+        getProjects(Auth.getToken(),this.handleSuccess,this.handleErrors);
     }
 
     handleSuccess(data,del){
@@ -49,7 +49,7 @@ export default class ProjectList extends React.Component{
 
     handleProjectDelete(id){
         console.log("Delete project",id);
-        deleteProjects.deleteProject(Auth.getToken(),id,this.handleSuccess.bind(null,true),this.handleErrors);
+        deleteProject(Auth.getToken(),id,this.handleSuccess.bind(null,true),this.handleErrors);
     }
 
     render(){
