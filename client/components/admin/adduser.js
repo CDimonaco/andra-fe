@@ -41,7 +41,6 @@ export default class AddUser extends React.Component{
 
 
     handleSuccess(data){
-        console.log("Success");
         this.props.history.push("/admin")
     }
 
@@ -56,7 +55,6 @@ export default class AddUser extends React.Component{
 
     createUser(e){
         e.preventDefault();
-        console.log(this.state.username,this.state.password,this.state.email,this.state.role);
         if(this.validateForm()){
             let requestBody = {username:this.state.username,password:this.state.password,email:this.state.email,role:parseInt(this.state.role)};
             newUser(Auth.getToken(),requestBody,this.handleSuccess,this.handleError);
@@ -65,7 +63,6 @@ export default class AddUser extends React.Component{
 
     validateForm(){
         let validationErrors = validateNewUser(this.state.username,this.state.password,this.state.email,this.state.role);
-        console.log(validationErrors);
         if(validationErrors.length > 0){
             this.setState({errors:validationErrors});
             setTimeout(function () {

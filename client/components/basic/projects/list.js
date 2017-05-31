@@ -31,7 +31,6 @@ export default class ProjectList extends React.Component{
         if(del){
             location.reload();
         }
-        console.log("Projects");
         this.setState({projects:data["projects"]});
     }
 
@@ -48,7 +47,6 @@ export default class ProjectList extends React.Component{
     }
 
     handleProjectDelete(id){
-        console.log("Delete project",id);
         deleteProject(Auth.getToken(),id,this.handleSuccess.bind(null,true),this.handleErrors);
     }
 

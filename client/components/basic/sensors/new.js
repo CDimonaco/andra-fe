@@ -24,7 +24,6 @@ export default class AddSensor extends React.Component{
     }
 
     handleSuccess(data){
-        console.log("Success");
         this.props.history.goBack();
     }
 

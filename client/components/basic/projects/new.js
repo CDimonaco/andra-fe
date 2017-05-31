@@ -30,12 +30,10 @@ export default class AddProject extends React.Component{
 
 
     handleSuccess(data){
-        console.log("Success");
         this.props.history.push("/")
     }
 
     handleError(xhr,status,err){
-        console.log(xhr.responseJSON["message"]);
         let raised = [xhr.responseJSON["message"]];
         this.setState({errors:raised});
         setTimeout(function () {
@@ -46,7 +44,6 @@ export default class AddProject extends React.Component{
 
     createProject(e){
         e.preventDefault();
-        console.log(this.state.name,this.state.description);
         if(this.validateForm()){
             let requestBody = {name:this.state.name,description:this.state.description};
             newProject(Auth.getToken(),requestBody,this.handleSuccess,this.handleError);
@@ -55,7 +52,6 @@ export default class AddProject extends React.Component{
 
     validateForm(){
         let validationErrors = validateNewProject(this.state.name,this.state.description);
-        console.log(validationErrors);
         if(validationErrors.length > 0){
             this.setState({errors:validationErrors});
             setTimeout(function () {

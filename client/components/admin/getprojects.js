@@ -27,7 +27,6 @@ export default class GetProjects extends React.Component{
     }
 
     handleSuccess(data){
-        console.log("Projects");
         this.setState({projects:data["projects"]});
     }
 

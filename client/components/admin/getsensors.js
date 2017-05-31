@@ -32,9 +32,8 @@ export default class GetSensors extends React.Component {
     }
 
     handleSuccess(data) {
-        console.log("Sensors");
         let updatedSensors = data.sensors.concat(this.state.sensors);
-        this.setState({sensors:updatedSensors},console.log(data));
+        this.setState({sensors:updatedSensors});
         if(data.hasMore){
             this.setState((prevState) => ({
                 offset: prevState.offset + 100,hasmore:true

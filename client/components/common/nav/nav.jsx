@@ -8,7 +8,6 @@ import Auth from "../auth.js"
 const Nav = () =>{
   const handleLogout = (e) => {
       e.preventDefault();
-      console.log("logout");
       Auth.deauthenticateUser();
   };
 

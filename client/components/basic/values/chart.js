@@ -48,15 +48,11 @@ export default class ValuesChart extends React.Component{
         let timeslices = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]};
         let now = new Date();
         let ago = new Date(now - 6*60*60*1000);
-        console.log(ago);
-        console.log(this.state.input);
         this.state.input.forEach(function (item) {
             let valueTime = new Date(item.timestamp);
             let valueTimeUtc = new Date(valueTime.getUTCFullYear(), valueTime.getUTCMonth(), valueTime.getUTCDate(),  valueTime.getUTCHours(), valueTime.getUTCMinutes(), valueTime.getUTCSeconds());
-            console.log(valueTimeUtc);
             if(valueTimeUtc < now && valueTimeUtc > ago){
                 let offset = now.getHours() - valueTimeUtc.getHours();
-                console.log(offset);
                 timeslices[offset].push(item);
             }
         });
@@ -73,9 +69,7 @@ export default class ValuesChart extends React.Component{
             let avg = sum/timeslices[key].length;
             graphvalues.push(avg);
         }
-        console.log(graphvalues.length);
         if(graphvalues.length === 7){
-            console.log("here");
             let graphConf = graphConfiguration;
             graphConf["datasets"][0]["data"] = graphvalues;
             this.setState({show:true,data:graphConf});

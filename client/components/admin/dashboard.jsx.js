@@ -33,7 +33,6 @@ export default class DashBoard extends React.Component{
         if(del){
             location.reload();
         }
-        console.log(data);
         this.setState({users:data.users});
         if(data.hasMore){
             this.setState({hasmore:true,offset:this.lastoffset+100})
@@ -56,13 +55,10 @@ export default class DashBoard extends React.Component{
                     this.setState({errors:[]})
                 }.bind(this)
                 ,3000);
-            console.log("User not found");
         }
-        console.log(xhr);
     }
     handleDelete(userid){
         deleteUsers(Auth.getToken(),userid,this.handleSuccess.bind(null,true),this.handleErrors);
-        console.log("Delete outside the row");
     }
     render(){
         return(

@@ -27,7 +27,6 @@ export default class SensorList extends React.Component {
     }
 
     handleDelete(id){
-        console.log("Delete for id",id);
         deleteSensor(Auth.getToken(),this.props.match.params.id,id,this.handleSuccess.bind(null,true),this.handleErrors)
     }
 
@@ -44,7 +43,7 @@ export default class SensorList extends React.Component {
             location.reload();
         }
         let updatedSensors = data.sensors.concat(this.state.sensors);
-        this.setState({sensors:updatedSensors},console.log(data));
+        this.setState({sensors:updatedSensors});
         if(data.hasMore){
             this.setState((prevState) => ({
                 offset: prevState.offset + 100,hasmore:true

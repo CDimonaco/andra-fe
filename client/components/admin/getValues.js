@@ -33,8 +33,6 @@ export default class GetValues extends React.Component {
     }
 
     handleSuccess(data) {
-        console.log("Values");
-        console.log(data);
         let updatedData = data.values.concat(this.state.values);
         this.setState({values:updatedData});
         if(data.hasMore){
