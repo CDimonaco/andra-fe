@@ -2,7 +2,7 @@
  * Created by cdimonaco on 24/05/2017.
  */
 
-const devBase = "http://52.214.203.17/api";
+const devBase = "http://ec2-52-214-203-17.eu-west-1.compute.amazonaws.com/api";
 
 
 let authenticationBackend = function(username,password,success,error){
