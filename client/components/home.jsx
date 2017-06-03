@@ -90,17 +90,17 @@ export default class Login extends React.Component{
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-12 text-center">
+                        <div className="col-lg-12 text-center" style={{marginBottom:10}}>
                             <h4>MADE WITH</h4>
                         </div>
                         <div className="col-lg-4">
-                            <img className="img-responsive" src={"http://www.unixstickers.com/image/data/stickers/mongo/mongo.sh.png"} width={200} height={200}/>
+                            <img className="img-responsive center-block" src={"http://www.unixstickers.com/image/data/stickers/mongo/mongo.sh.png"} width={200} height={200}/>
                         </div>
                         <div className="col-lg-4">
-                            <img className="img-responsive" src={"https://fsftn.org/events/sc/2016/chn/img/portfolio/Python.svg"} width={200} height={200}/>
+                            <img className="img-responsive center-block" src={"https://openclipart.org/image/2400px/svg_to_png/248484/387.png"} width={200} height={200}/>
                         </div>
                         <div className="col-lg-4">
-                            <img className="img-responsive" src={"http://www.unixstickers.com/image/cache/data/stickers/flask/Flask-text.sh-600x600.png"} width={200} height={200}/>
+                            <img className="img-responsive center-block" src={"http://www.unixstickers.com/image/cache/data/stickers/flask/Flask-text.sh-600x600.png"} width={200} height={200}/>
                         </div>
                     </div>
                 </div>
