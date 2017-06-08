@@ -1,6 +1,8 @@
 /**
  * Created by cdimonaco on 24/05/2017.
  */
+import {logout} from "./connection"
+
 class Auth {
 
     static authenticateUser(token,role,username) {
@@ -14,8 +16,21 @@ class Auth {
     }
 
     static deauthenticateUser() {
-        localStorage.clear();
-        location.reload();
+        let deauthResult = false;
+        logout(localStorage.getItem("token"),
+            function (data) {
+              localStorage.clear();
+              return deauthResult=true;
+        },function (xhr,status,err) {
+            if(xhr.status === 401 && xhr.responseJSON["message"]){
+                localStorage.clear();
+                deauthResult=true;
+            }else{
+                console.log("Error during logout");
+                deauthResult=false;
+            }
+        });
+        return deauthResult;
     }
     static getUsername(){
         return localStorage.getItem('username');

@@ -2,13 +2,15 @@
  * Created by cdimonaco on 24/05/2017.
  */
 import React from "react"
-import {Link} from "react-router-dom"
+import {Link,withRouter} from "react-router-dom"
 import Auth from "../auth.js"
 
-const Nav = () =>{
+const Nav = (props) =>{
   const handleLogout = (e) => {
       e.preventDefault();
-      Auth.deauthenticateUser();
+      if(Auth.deauthenticateUser()){
+          this.props.history.push("/");
+      }
   };
 
   return(
@@ -48,4 +50,4 @@ const Nav = () =>{
   )
 };
 
-export default Nav;
+export default withRouter(Nav);

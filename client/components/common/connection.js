@@ -21,6 +21,24 @@ let authenticationBackend = function(username,password,success,error){
         }.bind(this)
     });
 };
+let logout = function(token,success,error){
+    $.ajax({
+        url: devBase + "/auth/login",
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'POST',
+        headers:{
+            "Authorization" : "Bearer "+token
+        },
+        timeout: 30000,
+        success: function(data) {
+            success(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+            error(xhr, status, err);
+        }.bind(this)
+    });
+};
 let newUser = function (token,body,success,error) {
     $.ajax({
         url: devBase + "/user",
@@ -224,4 +242,4 @@ let deleteSensor = function(token,projectid,sensorid,success, error){
     });
 };
 
-export {newSensor,deleteSensor,deleteProject,authenticationBackend,getUsers,deleteUsers,newUser,getProjects,getProjectAdmin,getSensors,getValues,newProject}
+export {logout,newSensor,deleteSensor,deleteProject,authenticationBackend,getUsers,deleteUsers,newUser,getProjects,getProjectAdmin,getSensors,getValues,newProject}
