@@ -1,14 +1,16 @@
 /**
  * Created by cdimonaco on 24/05/2017.
  */
+
 import React from "react"
 import {Link,withRouter} from "react-router-dom"
 import Auth from "../auth.js"
 
 const Nav = (props) =>{
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+      e.preventDefault();
       if(Auth.deauthenticateUser()){
-          console.log("logged out");
+          return props.history.push("/");
       }
   };
 
