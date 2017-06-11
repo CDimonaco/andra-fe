@@ -23,7 +23,7 @@ let authenticationBackend = function(username,password,success,error){
 };
 let logout = function(token,success,error){
     $.ajax({
-        url: devBase + "/auth/login",
+        url: devBase + "/auth/logout",
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         type: 'POST',
