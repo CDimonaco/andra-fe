@@ -8,7 +8,7 @@ import Auth from "../auth.js"
 const Nav = (props) =>{
   const handleLogout = () => {
       if(Auth.deauthenticateUser()){
-          return
+          console.log("logged out");
       }
   };
 
@@ -29,7 +29,7 @@ const Nav = (props) =>{
                           <ul className="nav navbar-nav">
                               <li id="nav-home"><Link to="/">Home</Link></li>
                               <li id="nav-project"><Link to="/projects/new">Nuovo progetto</Link></li>
-                              <li onClick={handleLogout}><Link to={"/"}>Logout<Link/></li>
+                              <li onClick={handleLogout}><Link to={"/"}>Logout</Link></li>
 
                               {Auth.getRole() === "1" ?
                                   <li className="dropdown">
