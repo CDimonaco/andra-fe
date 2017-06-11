@@ -6,8 +6,7 @@ import {Link,withRouter} from "react-router-dom"
 import Auth from "../auth.js"
 
 const Nav = (props) =>{
-  const handleLogout = (e) => {
-      e.preventDefault();
+  const handleLogout = () => {
       if(Auth.deauthenticateUser()){
           props.history.push("/");
       }
