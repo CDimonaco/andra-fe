@@ -8,7 +8,7 @@ import Auth from "../auth.js"
 const Nav = (props) =>{
   const handleLogout = () => {
       if(Auth.deauthenticateUser()){
-          props.history.push("/");
+          return props.history.push("/");
       }
   };
 
