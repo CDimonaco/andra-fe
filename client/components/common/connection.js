@@ -30,6 +30,7 @@ let logout = function(token,success,error){
         headers:{
             "Authorization" : "Bearer "+token
         },
+        data:{},
         timeout: 30000,
         success: function(data) {
             success(data);
