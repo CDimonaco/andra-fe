@@ -25,12 +25,13 @@ class Auth {
         },function (xhr,status,err) {
             if(xhr.status === 401){
                 localStorage.clear();
-                deauthResult=true;
+                return deauthResult=true;
             }else{
                 console.log("Error during logout");
                 deauthResult=false;
             }
         });
+        console.log(deauthResult);
         return deauthResult;
     }
     static getUsername(){
