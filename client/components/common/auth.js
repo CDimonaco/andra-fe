@@ -18,10 +18,10 @@ class Auth {
     static deauthenticateUser() {
         logout(localStorage.getItem("token"),
             function (data) {
-              localStorage.clear();
+              return localStorage.clear();
         },function (xhr,status,err) {
             if(xhr.status === 401) {
-                localStorage.clear();
+                return localStorage.clear();
             }
         });
         return localStorage.getItem('token') === null;
