@@ -16,23 +16,15 @@ class Auth {
     }
 
     static deauthenticateUser() {
-        console.log(localStorage.getItem('token'));
-        let deauthResult = false;
         logout(localStorage.getItem("token"),
             function (data) {
               localStorage.clear();
-              return deauthResult=true;
         },function (xhr,status,err) {
-            if(xhr.status === 401){
+            if(xhr.status === 401) {
                 localStorage.clear();
-                return deauthResult=true;
-            }else{
-                console.log("Error during logout");
-                deauthResult=false;
             }
         });
-        console.log(deauthResult);
-        return deauthResult;
+        return localStorage.getItem('token') === null;
     }
     static getUsername(){
         return localStorage.getItem('username');
