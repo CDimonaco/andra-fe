@@ -9,7 +9,7 @@ const Nav = (props) =>{
   const handleLogout = (e) => {
       e.preventDefault();
       if(Auth.deauthenticateUser()){
-          this.props.history.push("/");
+          props.history.push("/");
       }
   };
 
