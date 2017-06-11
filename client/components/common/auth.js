@@ -16,6 +16,7 @@ class Auth {
     }
 
     static deauthenticateUser() {
+        console.log(localStorage.getItem('token'));
         let deauthResult = false;
         logout(localStorage.getItem("token"),
             function (data) {
