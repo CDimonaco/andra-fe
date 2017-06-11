@@ -23,7 +23,7 @@ class Auth {
               localStorage.clear();
               return deauthResult=true;
         },function (xhr,status,err) {
-            if(xhr.status === 401 && xhr.responseJSON["message"]){
+            if(xhr.status === 401){
                 localStorage.clear();
                 deauthResult=true;
             }else{
