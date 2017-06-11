@@ -3,7 +3,7 @@
  */
 
 import React from "react"
-import {Link,withRouter} from "react-router-dom"
+import {Link} from "react-router-dom"
 import Auth from "../auth.js"
 
 const Nav = (props) =>{
@@ -11,7 +11,7 @@ const Nav = (props) =>{
       console.log("Logged out");
       e.preventDefault();
       Auth.deauthenticateUser();
-      return props.history.push("/");
+      location.reload();
   };
 
   return(
@@ -51,4 +51,4 @@ const Nav = (props) =>{
   )
 };
 
-export default withRouter(Nav);
+export default Nav;
