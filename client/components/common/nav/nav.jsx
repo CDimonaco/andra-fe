@@ -20,14 +20,14 @@ const Nav = (props) =>{
               <nav className="navbar navbar-inverse navbar-fixed-top">
                   <div className="container-fluid">
                       <div className="navbar-header">
-                          <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#andrabar">
+                          <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#tecweb-febar">
                               <span className="icon-bar"></span>
                               <span className="icon-bar"></span>
                               <span className="icon-bar"></span>
                           </button>
-                          <a className="navbar-brand">A.N.D.R.A.</a>
+                          <a className="navbar-brand">tecweb-fe.</a>
                       </div>
-                      <div className="collapse navbar-collapse" id="andrabar">
+                      <div className="collapse navbar-collapse" id="tecweb-febar">
                           <ul className="nav navbar-nav">
                               <li id="nav-home"><Link to="/">Home</Link></li>
                               <li id="nav-project"><Link to="/projects/new">Nuovo progetto</Link></li>

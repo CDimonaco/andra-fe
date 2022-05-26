@@ -49,7 +49,7 @@ export default class Login extends React.Component{
                             <img width={200} height={400} className="img-responsive center-block" src={"LOGO.png"}/>
                         </div>
                         <div className="col-lg-6">
-                            <h2>A.N.D.R.A</h2>
+                            <h2>tecweb-fe</h2>
                             <br/>
                             <h4>Di Monaco Carmine - 0124001236</h4>
                             <h4>Università degli studi di Napoli "Parthenope"</h4>

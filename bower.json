@@ -1,12 +1,12 @@
 {
-  "name": "A.N.D.R.A",
+  "name": "tecweb-fe",
   "description": "Sensor Management tool",
   "main": "index.js",
   "authors": [
     "Carmine Di Monaco"
   ],
   "license": "APACHE 2",
-  "homepage": "https://github.com/CDimonaco/andra-fe",
+  "homepage": "https://github.com/CDimonaco/tecweb-fe-fe",
   "private": true,
   "ignore": [
     "**/.*",
